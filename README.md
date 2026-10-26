@@ -10,6 +10,7 @@
 [![Express 5](https://img.shields.io/badge/Express-5-green?logo=express)](https://expressjs.com/)
 [![Docker](https://img.shields.io/badge/Docker-Ready-2496ed?logo=docker)](https://www.docker.com/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![Lượt Xem](https://hits.sh/github.com/nguyenthaihuy0913/exploding-crises-game.svg?style=flat&label=%F0%9F%91%81%EF%B8%8F+L%C6%B0%E1%BB%A3t+xem&color=007ec6)](https://hits.sh/github.com/nguyenthaihuy0913/exploding-crises-game/)
 
 ---
 
@@ -165,4 +166,10 @@ Dự án được phát hành dưới giấy phép mã nguồn mở [MIT License
 
 ---
 
-⭐ **Nếu thấy dự án thú vị và hữu ích cho môn học của bạn, hãy tặng dự án 1 Star trên GitHub nhé!**
+<p align="center">
+  ⭐ <b>Nếu thấy dự án thú vị và hữu ích cho môn học của bạn, hãy tặng dự án 1 Star trên GitHub nhé!</b>
+  <br /><br />
+  <a href="https://hits.sh/github.com/nguyenthaihuy0913/exploding-crises-game/">
+    <img alt="Lượt xem dự án" src="https://hits.sh/github.com/nguyenthaihuy0913/exploding-crises-game.svg?style=flat&label=%F0%9F%91%81%EF%B8%8F+T%E1%BB%95ng+l%C6%B0%E1%BB%A3t+xem&color=007ec6" />
+  </a>
+</p>
