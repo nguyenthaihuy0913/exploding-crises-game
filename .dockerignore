@@ -1,0 +1,9 @@
+node_modules
+dist
+.git
+.gitignore
+*.pptx
+exploding-crises-spec.md
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
