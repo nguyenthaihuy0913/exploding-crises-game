@@ -48,11 +48,13 @@ export const HostWaitingRoom: React.FC<HostWaitingRoomProps> = ({
         <button
           onClick={() => {
             sound.playClick();
-            onBackToMenu();
+            if (window.confirm('Ông có chắc muốn đóng và hủy phòng chơi này không? Toàn bộ các máy đang kết nối sẽ được đưa về trang chủ.')) {
+              onBackToMenu();
+            }
           }}
-          className="text-xs font-semibold text-slate-500 hover:text-slate-800 flex items-center space-x-1.5 py-1.5 px-3 rounded-lg hover:bg-slate-100 transition-all cursor-pointer"
+          className="text-xs font-semibold text-rose-600 hover:text-rose-800 flex items-center space-x-1.5 py-1.5 px-3 rounded-lg hover:bg-rose-50 transition-all cursor-pointer border border-rose-200"
         >
-          <span>← Quay lại Menu</span>
+          <span>🔴 Đóng Phòng & Quay Lại Menu</span>
         </button>
 
         <div className="flex items-center space-x-2 text-xs font-medium text-slate-500 bg-white border border-slate-200 px-3 py-1 rounded-full shadow-2xs">

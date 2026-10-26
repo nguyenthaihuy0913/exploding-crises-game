@@ -125,6 +125,7 @@ io.on('connection', (socket) => {
       activeCrisisCard: null,
       activeQna: null,
       extraTurns: 0,
+      usedQuestionIds: [],
     };
 
     rooms.set(roomCode, roomState);
@@ -144,12 +145,31 @@ io.on('connection', (socket) => {
     socket.emit('room:updated', roomState);
   });
 
+  // 1c. Host explicitly closes and destroys room
+  socket.on('host:close_room', ({ roomCode }, callback) => {
+    const code = (roomCode || '').toUpperCase().trim();
+    const room = rooms.get(code);
+    if (!room) {
+      if (callback) callback({ success: false, message: 'Phòng không tồn tại!' });
+      return;
+    }
+
+    console.log(`[Host Closed Room] Code: ${code} destroyed by host.`);
+    io.to(code).emit('room:closed', {
+      message: `Phòng ${code} đã được chủ phòng đóng! Vui lòng liên hệ giảng viên hoặc quay lại trang chủ.`,
+    });
+    io.in(code).socketsLeave(code);
+    rooms.delete(code);
+
+    if (callback) callback({ success: true });
+  });
+
   // 1b. Get room state (teams, active connections) before joining
   socket.on('room:get_state', ({ roomCode }, callback) => {
     const code = (roomCode || '').toUpperCase().trim();
     const room = rooms.get(code);
     if (!room) {
-      if (callback) callback({ success: false, message: 'Phòng không tồn tại!' });
+      if (callback) callback({ success: false, message: 'Phòng không tồn tại hoặc đã bị chủ phòng đóng!' });
       return;
     }
     // Join socket channel to receive real-time room updates
@@ -163,7 +183,7 @@ io.on('connection', (socket) => {
     const room = rooms.get(code);
 
     if (!room) {
-      if (callback) callback({ success: false, message: 'Mã phòng không tồn tại!' });
+      if (callback) callback({ success: false, message: 'Phòng không tồn tại hoặc đã bị chủ phòng đóng!' });
       return;
     }
 
@@ -521,6 +541,10 @@ io.on('connection', (socket) => {
 
     room.phase = 'qna_pending';
     room.activeQna = qnaItem;
+    if (!room.usedQuestionIds) room.usedQuestionIds = [];
+    if (qnaItem?.id && !room.usedQuestionIds.includes(qnaItem.id)) {
+      room.usedQuestionIds.push(qnaItem.id);
+    }
     io.to(roomCode).emit('room:updated', room);
   });
 

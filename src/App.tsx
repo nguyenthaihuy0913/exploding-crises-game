@@ -24,6 +24,12 @@ export type AppMode = 'menu' | 'host' | 'join' | 'pass_and_play';
 const TEAM_AVATARS = ['compass', 'brain', 'target', 'users', 'shield', 'lightbulb'];
 const TEAM_COLORS = ['sky', 'purple', 'amber', 'indigo', 'emerald', 'rose'];
 
+function getNextUnusedQna(usedIds: string[] = []): QnaItem {
+  const unused = QNA_QUESTIONS.filter((q) => !usedIds.includes(q.id));
+  const pool = unused.length > 0 ? unused : QNA_QUESTIONS;
+  return pool[Math.floor(Math.random() * pool.length)];
+}
+
 export function App() {
   const [appMode, setAppMode] = useState<AppMode>('menu');
   const [soundEnabled, setSoundEnabled] = useState<boolean>(true);
@@ -45,6 +51,7 @@ export function App() {
   const [offlineCrisisCard, setOfflineCrisisCard] = useState<Card | null>(null);
   const [offlineQna, setOfflineQna] = useState<QnaItem | null>(null);
   const [offlineExtraTurns, setOfflineExtraTurns] = useState<number>(0);
+  const [offlineUsedQnaIds, setOfflineUsedQnaIds] = useState<string[]>([]);
 
   // Common Modals
   const [scanCards, setScanCards] = useState<Card[] | null>(null);
@@ -93,19 +100,59 @@ export function App() {
       });
   }, []);
 
-  // Listen to Socket.IO room updates
+  // Listen to Socket.IO room updates & closures
   useEffect(() => {
     const handleRoomUpdated = (updatedRoom: RoomState) => {
       console.log('[App] Room state updated:', updatedRoom);
       setRoomState(updatedRoom);
     };
 
+    const handleRoomClosed = ({ message }: { message?: string } = {}) => {
+      alert(message || 'Phòng chơi đã được chủ phòng đóng!');
+      try {
+        sessionStorage.removeItem('ssa101_appMode');
+        sessionStorage.removeItem('ssa101_roomCode');
+        sessionStorage.removeItem('ssa101_teamId');
+        if (typeof window !== 'undefined' && window.history && window.history.pushState) {
+          const url = new URL(window.location.href);
+          url.searchParams.delete('room');
+          window.history.pushState({}, '', url.pathname);
+        }
+      } catch {}
+      setUrlRoomCode('');
+      setRoomState(null);
+      setMyTeamId(null);
+      setAppMode('menu');
+    };
+
     socket.on('room:updated', handleRoomUpdated);
+    socket.on('room:closed', handleRoomClosed);
 
     return () => {
       socket.off('room:updated', handleRoomUpdated);
+      socket.off('room:closed', handleRoomClosed);
     };
   }, []);
+
+  const handleHostCloseRoom = () => {
+    if (roomState?.code) {
+      socket.emit('host:close_room', { roomCode: roomState.code });
+    }
+    try {
+      sessionStorage.removeItem('ssa101_appMode');
+      sessionStorage.removeItem('ssa101_roomCode');
+      sessionStorage.removeItem('ssa101_teamId');
+      if (typeof window !== 'undefined' && window.history && window.history.pushState) {
+        const url = new URL(window.location.href);
+        url.searchParams.delete('room');
+        window.history.pushState({}, '', url.pathname);
+      }
+    } catch {}
+    setUrlRoomCode('');
+    setRoomState(null);
+    setMyTeamId(null);
+    setAppMode('menu');
+  };
 
   const toggleSound = () => {
     sound.enabled = !soundEnabled;
@@ -244,10 +291,10 @@ export function App() {
 
   const handleClientFailedDefuse = () => {
     if (!roomState) return;
-    const randomQna = QNA_QUESTIONS[Math.floor(Math.random() * QNA_QUESTIONS.length)];
+    const nextQna = getNextUnusedQna(roomState.usedQuestionIds || []);
     socket.emit('game:trigger_qna', {
       roomCode: roomState.code,
-      qnaItem: randomQna,
+      qnaItem: nextQna,
     });
   };
 
@@ -272,10 +319,10 @@ export function App() {
 
   const handleHostFailedDefuse = () => {
     if (!roomState) return;
-    const randomQna = QNA_QUESTIONS[Math.floor(Math.random() * QNA_QUESTIONS.length)];
+    const nextQna = getNextUnusedQna(roomState.usedQuestionIds || []);
     socket.emit('game:trigger_qna', {
       roomCode: roomState.code,
-      qnaItem: randomQna,
+      qnaItem: nextQna,
     });
   };
 
@@ -293,6 +340,7 @@ export function App() {
   // ==========================================
   const handleStartPassAndPlay = (teamCount: number, teamNames: string[]) => {
     const { hands, drawPile, discardPile } = initializeDeck(teamCount);
+    setOfflineUsedQnaIds([]);
 
     const initialTeams: Team[] = teamNames.map((name, idx) => ({
       id: `team-${idx + 1}`,
@@ -530,8 +578,9 @@ export function App() {
   };
 
   const handleOfflineFailedDefuse = () => {
-    const randomQna = QNA_QUESTIONS[Math.floor(Math.random() * QNA_QUESTIONS.length)];
-    setOfflineQna(randomQna);
+    const nextQna = getNextUnusedQna(offlineUsedQnaIds);
+    setOfflineUsedQnaIds((prev) => [...prev, nextQna.id]);
+    setOfflineQna(nextQna);
     setOfflinePhase('qna_pending');
   };
 
@@ -583,9 +632,18 @@ export function App() {
         onToggleSound={toggleSound}
         onOpenRules={() => setShowRules(true)}
         onResetGame={() => {
-          setAppMode('menu');
-          setRoomState(null);
-          setMyTeamId(null);
+          if (appMode === 'host' && roomState?.code) {
+            handleHostCloseRoom();
+          } else {
+            try {
+              sessionStorage.removeItem('ssa101_appMode');
+              sessionStorage.removeItem('ssa101_roomCode');
+              sessionStorage.removeItem('ssa101_teamId');
+            } catch {}
+            setAppMode('menu');
+            setRoomState(null);
+            setMyTeamId(null);
+          }
         }}
         isGameActive={appMode !== 'menu'}
       />
@@ -612,10 +670,7 @@ export function App() {
             localIp={localIp}
             teams={roomState.teams}
             onStartGame={handleHostStartGame}
-            onBackToMenu={() => {
-              setAppMode('menu');
-              setRoomState(null);
-            }}
+            onBackToMenu={handleHostCloseRoom}
           />
         )}
 

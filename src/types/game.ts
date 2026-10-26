@@ -57,6 +57,7 @@ export interface RoomState {
   activeCrisisCard: Card | null;
   activeQna: QnaItem | null;
   extraTurns?: number;
+  usedQuestionIds?: string[];
 }
 
 export interface QnaOption {

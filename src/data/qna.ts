@@ -1,654 +1,1155 @@
 import { QnaItem } from '../types/game';
 
 export const QNA_QUESTIONS: QnaItem[] = [
-  // =========================================================================
-  // BƯỚC 1: XÁC ĐỊNH & ĐÓNG KHUNG VẤN ĐỀ (PROBLEM DEFINITION & SCOPING)
-  // =========================================================================
   {
-    id: 'ssa_q01',
-    step: 'Bước 1: Xác Định Vấn Đề - Phình To Phạm Vi (Scope Creep)',
-    scenario: 'Nhóm sinh viên nhận đề tài môn học: "Xây dựng ứng dụng khảo sát 5 câu hỏi để đo lường mức độ hài lòng tại căng tin trong 2 tuần". Sau 3 ngày họp, nhóm quyết định tích hợp thêm hệ thống đặt món online, ví điện tử và mạng xã hội kết nối sinh viên.',
-    question: 'Hành vi trên vi phạm nghiêm trọng nguyên tắc nào trong Bước 1 của quy trình giải quyết vấn đề?',
-    options: [
+    "id": "en_q01",
+    "step": "Step 1: Problem Definition - Scope Creep",
+    "scenario": "A student team is assigned to design a 5-question cafeteria feedback tool in two weeks. By day four, members want to add food delivery, online payments, and student messaging.",
+    "question": "Which fundamental principle of Step 1 (Problem Definition) did the student team violate?",
+    "options": [
       {
-        id: 'a',
-        text: 'Bị rơi vào bẫy Scope Creep (Phình to phạm vi), làm loãng mục tiêu cốt lõi và chắc chắn vỡ tiến độ dự án.',
-        isCorrect: true,
-        explanation: 'Chính xác! Bước 1 đòi hỏi phải khoanh vùng ranh giới vấn đề (Boundaries) và xác định Sản phẩm khả dụng tối thiểu (MVP) trước khi nghĩ đến các tính năng phụ.'
+        "id": "a",
+        "text": "Uncontrolled scope expansion that blurs the core objective and exceeds allotted timelines.",
+        "isCorrect": true,
+        "explanation": "Correct! Step 1 requires defining clear boundaries and an MVP before considering peripheral features."
       },
       {
-        id: 'b',
-        text: 'Nhóm đang thể hiện tư duy sáng tạo đột phá cần được khuyến khích tối đa mà không cần giới hạn.',
-        isCorrect: false,
-        explanation: 'Sai lầm. Sáng tạo không có kỷ luật phạm vi và nguồn lực chỉ dẫn đến thất bại trong triển khai.'
+        "id": "b",
+        "text": "Encouraging expansive cross-functional feature discovery that should proceed without schedule boundaries to maximize user utility.",
+        "isCorrect": false,
+        "explanation": "Incorrect (Plausible Distractor). Uncontrolled feature bloat without schedule governance guarantees missed deadlines."
       },
       {
-        id: 'c',
-        text: 'Vấn đề thực sự chỉ là thiếu lập trình viên giỏi để hoàn thành cả 4 tính năng trong 2 tuần.',
-        isCorrect: false,
-        explanation: 'Sai lầm. Đây là ngụy biện đổ lỗi cho nguồn lực thay vì nhìn nhận lỗi sai căn bản trong khâu định nghĩa phạm vi.'
+        "id": "c",
+        "text": "Failing to recruit external software developers who could implement all four enterprise systems within the original two-week window.",
+        "isCorrect": false,
+        "explanation": "Incorrect. This fallaciously blames resource headcounts instead of addressing a foundational scoping error."
+      },
+      {
+        "id": "d",
+        "text": "Ignoring advanced artificial intelligence automated predictive modeling algorithms for anticipating peak lunch hour foot traffic.",
+        "isCorrect": false,
+        "explanation": "Incorrect. Premature complexity that distracts from the fundamental 5-question feedback objective."
       }
     ]
   },
   {
-    id: 'ssa_q02',
-    step: 'Bước 1: Đóng Khung Vấn Đề - Triệu Chứng vs Bản Chất',
-    scenario: 'Một công ty khởi nghiệp ghi nhận tỷ lệ khách hàng rời bỏ ứng dụng (Churn Rate) tăng 35% trong tháng qua. Giám đốc yêu cầu phòng Marketing tung ngay voucher giảm giá 50% để giữ chân người dùng.',
-    question: 'Tại sao quyết định tung voucher ngay lúc này lại là một sai lầm phổ biến trong giải quyết vấn đề?',
-    options: [
+    "id": "en_q02",
+    "step": "Step 1: Problem Framing - Symptom vs. Root Cause",
+    "scenario": "A campus startup observes user churn rising by 35% this month. The director immediately prepares a massive 50% discount voucher campaign to stop customer departures.",
+    "question": "Why does issuing discount vouchers represent a dangerous problem-solving error?",
+    "options": [
       {
-        id: 'a',
-        text: 'Vì chiết khấu 50% vẫn chưa đủ hấp dẫn để kích thích người dùng quay lại.',
-        isCorrect: false,
-        explanation: 'Sai lầm. Tăng khuyến mãi mù quáng chỉ làm cạn kiệt ngân sách mà không chạm tới vấn đề thật.'
+        "id": "a",
+        "text": "Issuing price discounts is financially insufficient because contemporary university students respond solely to free merchandise and cash giveaways.",
+        "isCorrect": false,
+        "explanation": "Incorrect (Plausible Distractor). Subsidizing churned users without diagnosing the underlying cause burns cash without fixing retention."
       },
       {
-        id: 'b',
-        text: 'Vì đang nhầm lẫn giữa "Triệu chứng" (khách bỏ đi) và "Nguyên nhân cốt lõi" (ứng dụng lỗi, trải nghiệm tệ hoặc đối thủ vượt trội).',
-        isCorrect: true,
-        explanation: 'Xuất sắc! Khách rời bỏ chỉ là triệu chứng bề mặt. Nếu ứng dụng liên tục giật lag hoặc mất dữ liệu, voucher giảm giá chỉ khiến khách nhận ưu đãi rồi tiếp tục rời đi.'
+        "id": "b",
+        "text": "It treats a visible surface symptom instead of investigating root software bugs or UX flaws.",
+        "isCorrect": true,
+        "explanation": "Spot on! Churn is a symptom. If the app is crashing, price cuts merely subsidize departing users without resolving defects."
       },
       {
-        id: 'c',
-        text: 'Vì nên sa thải toàn bộ đội ngũ chăm sóc khách hàng trước khi tính đến chuyện giảm giá.',
-        isCorrect: false,
-        explanation: 'Sai lầm. Đây là phản ứng cảm tính đổ lỗi cá nhân mà không dựa trên dữ liệu chẩn đoán hệ thống.'
-      }
-    ]
-  },
-
-  // =========================================================================
-  // BƯỚC 2: PHÂN TÍCH NGUYÊN NHÂN GỐC RỄ (ROOT CAUSE ANALYSIS & 5 WHYS)
-  // =========================================================================
-  {
-    id: 'ssa_q03',
-    step: 'Bước 2: Phân Tích Nguyên Nhân - Phương Pháp 5 Whys',
-    scenario: 'Tại một quán cà phê sinh viên, nhân viên liên tục trượt ngã làm vỡ đồ uống vào giờ cao điểm sáng. Quản lý lập biên bản phạt nhân viên vì "bất cẩn và đi đứng vội vàng".',
-    question: 'Theo kỹ thuật 5 Whys trong SSA101, nhận định nào chỉ ra sai lầm của người quản lý?',
-    options: [
-      {
-        id: 'a',
-        text: 'Quản lý dừng lại quá sớm ở hành vi con người mà không đào sâu vào yếu tố môi trường (sàn gạch trơn, thiếu thảm chống trượt) và quy trình layout quầy bar.',
-        isCorrect: true,
-        explanation: 'Rất chuẩn! 5 Whys giúp ta vượt qua phản xạ đổ lỗi cho cá nhân để tìm ra lỗi hệ thống (Systemic Failure).'
+        "id": "c",
+        "text": "Customer support agents should have been immediately suspended for failing to convince leaving users to remain loyal to the service.",
+        "isCorrect": false,
+        "explanation": "Incorrect. Emotional blame attribution fails to identify mechanical or architectural system bottlenecks."
       },
       {
-        id: 'b',
-        text: 'Mức tiền phạt quá nhẹ, cần phạt gấp đôi để nhân viên tập trung làm việc hơn.',
-        isCorrect: false,
-        explanation: 'Sai lầm. Trừng phạt nặng hơn chỉ làm tăng tỷ lệ nhân viên nghỉ việc chứ không ngăn được nước rò rỉ làm trơn sàn.'
-      },
-      {
-        id: 'c',
-        text: 'Nên yêu cầu nhân viên chỉ đi bộ thật chậm chạp dù khách đang xếp hàng dài.',
-        isCorrect: false,
-        explanation: 'Sai lầm. Giải pháp này gây tắc nghẽn quầy thanh toán và làm giảm sút doanh thu nghiêm trọng.'
+        "id": "d",
+        "text": "Voucher promotional discounts inevitably trigger inflationary currency distortions across regional microeconomic educational ecosystems.",
+        "isCorrect": false,
+        "explanation": "Incorrect. Irrelevant macroeconomic distraction that ignores product usability and service quality."
       }
     ]
   },
   {
-    id: 'ssa_q04',
-    step: 'Bước 2: Biểu Đồ Xương Cá Ishikawa - Phân Loại 4M',
-    scenario: 'Dây chuyền sản xuất bánh ngọt của một xưởng thực phẩm bị biến dạng hình thức hàng loạt. Nhóm phụ trách lập biểu đồ Ishikawa (Fishbone Diagram) để tìm nguyên nhân.',
-    question: 'Theo mô hình phân loại nguyên nhân 4M (Man - Machine - Method - Material), việc "Nhiệt độ lò nướng dao động thất thường do cảm biến cũ" thuộc nhánh nào?',
-    options: [
+    "id": "en_q03",
+    "step": "Step 1: Drafting The Problem Statement",
+    "scenario": "An urban delivery logistics team drafts their problem statement: \"Our team currently lacks five new refrigerated delivery vans to complete same-day orders on time.\"",
+    "question": "What is the primary methodological flaw in this problem statement?",
+    "options": [
       {
-        id: 'a',
-        text: 'Nhánh Material (Nguyên vật liệu đầu vào)',
-        isCorrect: false,
-        explanation: 'Sai. Bột, đường, bơ mới thuộc nhánh Nguyên vật liệu.'
+        "id": "a",
+        "text": "Refrigerated delivery vans are economically unviable compared to cargo bicycles in high-density urban downtown corridors.",
+        "isCorrect": false,
+        "explanation": "Incorrect. This debates vehicle choices rather than critiquing the logical structure of the problem statement."
       },
       {
-        id: 'b',
-        text: 'Nhánh Method (Phương pháp / Công thức vận hành)',
-        isCorrect: false,
-        explanation: 'Sai. Quy trình cài đặt thời gian nướng mới thuộc Method.'
+        "id": "b",
+        "text": "The statement presumes a specific solution rather than neutrally defining the operational performance gap.",
+        "isCorrect": true,
+        "explanation": "Accurate! A disciplined problem statement articulates the gap and metric impact, never a pre-selected procurement solution."
       },
       {
-        id: 'c',
-        text: 'Nhánh Machine (Thiết bị, máy móc và công cụ vận hành)',
-        isCorrect: true,
-        explanation: 'Chính xác! Lò nướng và cảm biến nhiệt độ là trang thiết bị kỹ thuật thuộc nhóm Machine.'
+        "id": "c",
+        "text": "Problem statements must strictly exclude numerical quantities, delivery milestones, and operational metrics from formal documentation.",
+        "isCorrect": false,
+        "explanation": "Incorrect (Plausible Distractor). Metrics are essential; the defect is baking the assumed solution directly into the definition."
+      },
+      {
+        "id": "d",
+        "text": "Logistics statements should prioritize driver emotional sentiment indices rather than focusing strictly on temporal order fulfillment ratios.",
+        "isCorrect": false,
+        "explanation": "Incorrect. While driver morale matters, problem statements require objective operational baseline definitions."
       }
     ]
   },
   {
-    id: 'ssa_q05',
-    step: 'Bước 2: Nguyên Lý Pareto 80/20 Trong Ưu Tiên Xử Lý',
-    scenario: 'Bộ phận hỗ trợ kỹ thuật tổng hợp 500 khiếu nại của khách hàng và phân thành 6 nhóm lỗi khác nhau. Ngân sách và thời gian chỉ đủ để khắc phục triệt để 1 hoặc 2 lỗi trong tuần này.',
-    question: 'Ứng dụng nguyên lý Pareto (80/20), nhóm nên hành động như thế nào?',
-    options: [
+    "id": "en_q04",
+    "step": "Step 1: Boundary Setting & Non-Goals",
+    "scenario": "A campus working group begins redesigning quiet study halls in the main library. Vocal student delegates demand that cafeteria food menus and dorm gym hours be included.",
+    "question": "How should the project lead manage these extra requests during Step 1?",
+    "options": [
       {
-        id: 'a',
-        text: 'Chia đều thời gian và nguồn lực để sửa mỗi nhóm lỗi một chút cho công bằng.',
-        isCorrect: false,
-        explanation: 'Sai lầm. Dàn trải nguồn lực khiến không có lỗi nào được giải quyết triệt để.'
+        "id": "a",
+        "text": "Incorporate all delegate requests into the active project charter to foster comprehensive campus-wide political alignment and goodwill.",
+        "isCorrect": false,
+        "explanation": "Incorrect (Plausible Distractor). Attempting to satisfy every peripheral request causes boundary dissolution and project failure."
       },
       {
-        id: 'b',
-        text: 'Tập trung toàn lực xử lý 20% nhóm nguyên nhân cốt lõi đang chiếm tới 80% tổng lượng khiếu nại của khách.',
-        isCorrect: true,
-        explanation: 'Chính xác! Nguyên lý Pareto giúp tối đa hóa tác động với nguồn lực hữu hạn (Vital Few vs. Trivial Many).'
+        "id": "b",
+        "text": "Establish an explicit Non-Goals register to maintain project focus while logging feedback.",
+        "isCorrect": true,
+        "explanation": "Outstanding! Documenting explicit non-goals protects core delivery focus while showing stakeholders their input was recorded."
       },
       {
-        id: 'c',
-        text: 'Ưu tiên sửa lỗi dễ nhất và tốn ít công sức nhất trước bất kể lỗi đó có ít khách phàn nàn.',
-        isCorrect: false,
-        explanation: 'Sai lầm. Sửa lỗi vụn vặt không giúp giải quyết được bức xúc của đại đa số người dùng.'
-      }
-    ]
-  },
-
-  // =========================================================================
-  // BƯỚC 3: ĐỘNG NÃO & TƯ DUY SÁNG TẠO (BRAINSTORMING & SCAMPER)
-  // =========================================================================
-  {
-    id: 'ssa_q06',
-    step: 'Bước 3: Động Não - Nguyên Tắc "Tạm Hoãn Phán Xét"',
-    scenario: 'Trong buổi Brainstorming tìm ý tưởng marketing mới cho CLB, bạn Nam vừa đề xuất: "Hay là mình mời một chú hề phát bóng bay trước cổng trường?". Trưởng nhóm lập tức ngắt lời: "Vớ vẩn! CLB học thuật ai lại làm thế, ý tưởng tiếp theo đi!".',
-    question: 'Hành vi của trưởng nhóm vi phạm quy tắc cốt tử nào của kỹ thuật Động não (Brainstorming)?',
-    options: [
-      {
-        id: 'a',
-        text: 'Quy tắc Tạm hoãn phán xét (Defer Judgement) và Khuyến khích số lượng (Go for Quantity).',
-        isCorrect: true,
-        explanation: 'Rất chính xác! Chỉ trích sớm sẽ bóp nghẹt sự sáng tạo, khiến các thành viên sợ hãi và không dám chia sẻ thêm bất kỳ ý tưởng táo bạo nào.'
+        "id": "c",
+        "text": "Dismiss student input entirely and restrict planning authority to senior library administrative staff behind closed doors.",
+        "isCorrect": false,
+        "explanation": "Incorrect. Eliminating stakeholder consultation creates severe resistance during eventual rollout."
       },
       {
-        id: 'b',
-        text: 'Quy tắc Không được phản bác người có điểm trung bình học tập cao hơn.',
-        isCorrect: false,
-        explanation: 'Sai. Brainstorming bình đẳng về ý tưởng, không căn cứ vào điểm số cá nhân.'
-      },
-      {
-        id: 'c',
-        text: 'Trưởng nhóm hoàn toàn đúng vì cần loại bỏ ngay các ý tưởng phi thực tế để tiết kiệm thời gian.',
-        isCorrect: false,
-        explanation: 'Sai lầm nghiêm trọng. Giai đoạn sinh ý tưởng (Divergent Thinking) tách biệt hoàn toàn với giai đoạn sàng lọc (Convergent Thinking).'
+        "id": "d",
+        "text": "Immediately expand project staffing by four hundred percent to simultaneously re-engineer all residential and athletic campus facilities.",
+        "isCorrect": false,
+        "explanation": "Incorrect. Absurd scope inflation that bankrupts capital budgets and guarantees organizational failure."
       }
     ]
   },
   {
-    id: 'ssa_q07',
-    step: 'Bước 3: Kỹ Thuật SCAMPER - Đảo Ngược (Reverse/Rearrange)',
-    scenario: 'Bãi giữ xe trường học bị tắc nghẽn nghiêm trọng vào mỗi sáng do quy trình: Dừng xe -> Quẹt thẻ -> Chờ mở rào chắn -> Bảo vệ thu tiền mặt.',
-    question: 'Áp dụng chữ R (Reverse - Đảo ngược) trong mô hình SCAMPER, giải pháp nào dưới đây mang tính đột phá?',
-    options: [
+    "id": "en_q05",
+    "step": "Step 1: Context & Constraint Analysis",
+    "scenario": "A student society aims to build a campus ridesharing platform. They plan server architecture without verifying municipal taxi transport regulations or university IT policies.",
+    "question": "Which critical component of Step 1 did the development team neglect?",
+    "options": [
       {
-        id: 'a',
-        text: 'Tăng thêm 2 nhân viên bảo vệ để đứng đếm tiền nhanh hơn.',
-        isCorrect: false,
-        explanation: 'Đây là giải pháp mở rộng tuyến tính thông thường, không áp dụng tư duy đảo ngược.'
+        "id": "a",
+        "text": "Environmental context and regulatory boundary constraints.",
+        "isCorrect": true,
+        "explanation": "Correct! Feasibility boundaries and legal constraints must be established before committing engineering resources."
       },
       {
-        id: 'b',
-        text: 'Đảo ngược quy trình: Cho xe vào cổng tự do không cần dừng (quét biển số tự động khi đang chạy), việc thanh toán tích hợp vào học phí hoặc qua app sau.',
-        isCorrect: true,
-        explanation: 'Tuyệt vời! Đảo ngược thứ tự kiểm tra/thanh toán giúp dòng phương tiện lưu thông liên tục không bị nghẽn cổ chai.'
+        "id": "b",
+        "text": "Failing to conduct international multi-country user perception surveys across fifteen university campuses worldwide before writing any code.",
+        "isCorrect": false,
+        "explanation": "Incorrect (Plausible Distractor). Premature worldwide scaling before establishing local legal compliance is wasteful."
       },
       {
-        id: 'c',
-        text: 'Yêu cầu sinh viên phải đến trường trước giờ học 1 tiếng để tránh tắc đường.',
-        isCorrect: false,
-        explanation: 'Sai. Đây là đẩy gánh nặng sang người dùng thay vì cải tiến quy trình.'
+        "id": "c",
+        "text": "Selecting relational SQL database schemas instead of non-relational graph databases for modeling urban geographical spatial coordinate points.",
+        "isCorrect": false,
+        "explanation": "Incorrect. Technical implementation details do not replace legal and operational boundary checks."
+      },
+      {
+        "id": "d",
+        "text": "Mandating that all incoming freshmen purchase company equity shares prior to obtaining authorized access to the campus vehicle network.",
+        "isCorrect": false,
+        "explanation": "Incorrect. Unrealistic legal arrangement completely unrelated to problem definition and boundary analysis."
       }
     ]
   },
   {
-    id: 'ssa_q08',
-    step: 'Bước 3: Vượt Qua Bẫy "Cố Định Chức Năng" (Functional Fixedness)',
-    scenario: 'Trong sự cố tàu vũ trụ Apollo 13, phi hành đoàn phải lọc khí CO2 nhưng ống lọc vuông của khoang đổ bộ lại không vừa với ổ cắm tròn của khoang chỉ huy. Họ chỉ có băng dính xám, bìa carton và túi ni lông.',
-    question: 'Khái niệm "Cố định chức năng" (Functional Fixedness) mô tả rào cản tâm lý nào?',
-    options: [
+    "id": "en_q06",
+    "step": "Step 2: Root Cause - 5 Whys Analysis",
+    "scenario": "Baristas at a campus coffee shop repeatedly slip and drop hot beverages during peak morning hours. Management penalizes staff members for careless hurrying.",
+    "question": "Applying the 5 Whys, what did management fail to investigate?",
+    "options": [
       {
-        id: 'a',
-        text: 'Xu hướng chỉ nhìn thấy một đồ vật theo đúng chức năng truyền thống vốn có của nó (ví dụ: nghĩ băng dính chỉ để dán giấy thay vì làm kín ống khí).',
-        isCorrect: true,
-        explanation: 'Chuẩn xác! Vượt qua cố định chức năng là chìa khóa để tái sử dụng nguồn lực có sẵn trong nghịch cảnh.'
+        "id": "a",
+        "text": "Mandating that baristas attend weekly classroom posture lectures to ensure they walk at half speed across wet service counters.",
+        "isCorrect": false,
+        "explanation": "Incorrect (Plausible Distractor). Forcing artificial slowdowns exacerbates customer wait times without fixing floor drainage."
       },
       {
-        id: 'b',
-        text: 'Sự kiên định tuân thủ tuyệt đối quy trình vận hành tiêu chuẩn trong sách hướng dẫn.',
-        isCorrect: false,
-        explanation: 'Sai. Đây là tính kỷ luật quy trình, không phải định nghĩa của cố định chức năng.'
+        "id": "b",
+        "text": "Underlying physical causes like leaking ice drainage and untextured flooring.",
+        "isCorrect": true,
+        "explanation": "Correct! The 5 Whys drill through surface human error to uncover latent environmental and equipment layout hazards."
       },
       {
-        id: 'c',
-        text: 'Việc từ chối hợp tác với các đồng nghiệp khác chuyên môn.',
-        isCorrect: false,
-        explanation: 'Sai. Đó là hiện tượng Silo Mentality (Tư duy cục bộ).'
-      }
-    ]
-  },
-
-  // =========================================================================
-  // BƯỚC 4: ĐÁNH GIÁ & LỰA CHỌN GIẢI PHÁP (DECISION MATRIX & CRITICAL THINKING)
-  // =========================================================================
-  {
-    id: 'ssa_q09',
-    step: 'Bước 4: Ma Trận Quyết Định Có Trọng Số (Weighted Decision Matrix)',
-    scenario: 'Nhóm bạn đang chọn 1 trong 3 đề tài nghiên cứu khoa học. Các thành viên tranh cãi nảy lửa vì mỗi người thích một chủ đề khác nhau theo cảm tính cá nhân.',
-    question: 'Phương pháp khoa học nhất để nhóm đưa ra quyết định đồng thuận và khách quan là gì?',
-    options: [
-      {
-        id: 'a',
-        text: 'Lập Ma trận quyết định có trọng số: Thống nhất các tiêu chí (Tính khả thi, Tính mới, Chi phí, Dữ liệu có sẵn) và chấm điểm định lượng.',
-        isCorrect: true,
-        explanation: 'Chính xác! Ma trận quyết định biến tranh luận cảm tính thành đánh giá đa tiêu chí minh bạch và có căn cứ.'
+        "id": "c",
+        "text": "Doubling financial disciplinary deductions to verify whether fiscal disincentives eliminate physical slipping on liquid surfaces.",
+        "isCorrect": false,
+        "explanation": "Incorrect. Escalating punitive fines demoralizes staff without stopping physical water leaks."
       },
       {
-        id: 'b',
-        text: 'Bốc thăm ngẫu nhiên để không ai cảm thấy bị mất mặt.',
-        isCorrect: false,
-        explanation: 'Sai. Phụ thuộc vào may rủi là từ bỏ trách nhiệm tư duy phản biện.'
-      },
-      {
-        id: 'c',
-        text: 'Chọn đề tài mà bạn nhóm trưởng yêu thích vì nhóm trưởng chịu trách nhiệm điểm số cao nhất.',
-        isCorrect: false,
-        explanation: 'Sai. Đây là bẫy HiPPO (Highest Paid Person\'s Opinion) - dựa vào quyền uy thay vì dữ liệu.'
+        "id": "d",
+        "text": "Replacing human beverage preparation entirely with imported high-speed humanoid robotic dispensing arms within thirty business days.",
+        "isCorrect": false,
+        "explanation": "Incorrect. Unfeasible capital expenditure that avoids simple plumbing and floor maintenance."
       }
     ]
   },
   {
-    id: 'ssa_q10',
-    step: 'Tư Duy Phản Biện: Bẫy Chi Phí Chìm (Sunk Cost Fallacy)',
-    scenario: 'Một dự án phần mềm đã tiêu tốn 200 triệu VNĐ và 6 tháng phát triển. Tuy nhiên, công nghệ cốt lõi của dự án vừa bị một thư viện mã nguồn mở miễn phí vượt mặt hoàn toàn về tốc độ lẫn tính năng.',
-    question: 'Nhận định nào dưới đây thể hiện tư duy của người phản biện sáng suốt, KHÔNG bị bẫy chi phí chìm?',
-    options: [
+    "id": "en_q07",
+    "step": "Step 2: MECE Principle (Issue Trees)",
+    "scenario": "A consulting team analyzes why university bookstore revenue dropped. They categorize drivers into: \"Online Competitors\", \"High Textbook Prices\", and \"Low Student Enrollment\".",
+    "question": "Why does this categorization breach the MECE (Mutually Exclusive, Collectively Exhaustive) principle?",
+    "options": [
       {
-        id: 'a',
-        text: '"Đã lỡ bỏ ra 200 triệu rồi, bỏ bây giờ thì mất trắng! Phải làm tiếp cho xong để thu hồi vốn."',
-        isCorrect: false,
-        explanation: 'Sai lầm. Đây chính là biểu hiện điển hình của bẫy tâm lý Chi phí chìm (Sunk Cost Fallacy).'
+        "id": "a",
+        "text": "Categories overlap and omit non-textbook revenue streams like stationery.",
+        "isCorrect": true,
+        "explanation": "Spot on! Price and competition overlap in consumer purchasing decisions, while omitting other merchandise categories."
       },
       {
-        id: 'b',
-        text: '"200 triệu đã qua là khoản không thể thu hồi. Quyết định tiếp tục hay dừng lại chỉ được căn cứ trên chi phí, rủi ro và giá trị tương lai."',
-        isCorrect: true,
-        explanation: 'Rất xuất sắc! Chi phí chìm đã mất vĩnh viễn trong quá khứ. Đổ thêm tiền vào một giải pháp lỗi thời chỉ làm tăng gấp đôi khoản lỗ.'
+        "id": "b",
+        "text": "Consulting frameworks should never disaggregate commercial retail revenue into distinct constituent mathematical components or price variables.",
+        "isCorrect": false,
+        "explanation": "Incorrect (Plausible Distractor). Mathematical revenue disaggregation is the foundation of sound issue tree structuring."
       },
       {
-        id: 'c',
-        text: '"Tạm dừng dự án 1 năm rồi chờ xem thư viện mã nguồn mở kia có bị phá sản hay không."',
-        isCorrect: false,
-        explanation: 'Sai. Trì hoãn chỉ làm lãng phí cơ hội nắm bắt công nghệ mới.'
+        "id": "c",
+        "text": "University bookstores must legally maintain monopolistic retail pricing structures exempt from standard competitive market forces.",
+        "isCorrect": false,
+        "explanation": "Incorrect. Factually incorrect assumption regarding educational retail commerce."
+      },
+      {
+        "id": "d",
+        "text": "The categories fail to incorporate metaphysical astrological indicators influencing seasonal undergraduate purchasing inclinations.",
+        "isCorrect": false,
+        "explanation": "Incorrect. Pseudoscience distractor irrelevant to analytical business problem solving."
       }
     ]
   },
   {
-    id: 'ssa_q11',
-    step: 'Tư Duy Phản Biện: Ngụy Biện Tương Quan vs Nhân Quả',
-    scenario: 'Một khảo sát nội bộ chỉ ra rằng: "Những nhân viên uống trên 4 tách cà phê mỗi ngày có số dòng code viết ra nhiều hơn 30%, nhưng hệ thống của họ cũng gặp nhiều lỗi hơn 40% so với người khác". Trưởng phòng kết luận: "Cà phê gây hại cho khả năng tư duy logic của lập trình viên, cần cấm cà phê".',
-    question: 'Lỗ hổng logic trong kết luận của trưởng phòng là gì?',
-    options: [
+    "id": "en_q08",
+    "step": "Step 2: Ishikawa 4M Root Cause Taxonomy",
+    "scenario": "A commercial bakery experiences inconsistent pastry crust browning. An analysis using the Ishikawa 4M taxonomy (Man, Machine, Method, Material) is initiated.",
+    "question": "Under which 4M branch does \"An uncalibrated thermal oven sensor causing temperature fluctuations\" belong?",
+    "options": [
       {
-        id: 'a',
-        text: 'Đánh đồng Mối tương quan (Correlation) thành Quan hệ nhân quả (Causation); cả hai có thể cùng bắt nguồn từ biến ẩn thứ ba là "Áp lực deadline và làm việc kiệt sức".',
-        isCorrect: true,
-        explanation: 'Tuyệt vời! Nhân viên chịu áp lực lớn vừa phải thức khuya uống nhiều cà phê, vừa dễ mất tập trung dẫn đến sinh bug code.'
+        "id": "a",
+        "text": "Material: Categorized under raw organic ingredient variations such as sugar crystallization and moisture content in flour bags.",
+        "isCorrect": false,
+        "explanation": "Incorrect. Ingredients belong to Material; technical hardware belongs to Machine."
       },
       {
-        id: 'b',
-        text: 'Cỡ mẫu khảo sát chưa đạt 1 triệu người nên dữ liệu hoàn toàn vô giá trị.',
-        isCorrect: false,
-        explanation: 'Sai. Cỡ mẫu nội bộ có giá trị tham khảo, lỗi nằm ở suy luận nhân quả sai lầm.'
+        "id": "b",
+        "text": "Method: Classified under operational recipe instructions, mixing duration guidelines, and standardized cooling rack procedures.",
+        "isCorrect": false,
+        "explanation": "Incorrect (Plausible Distractor). Procedural timing belongs to Method; physical sensor hardware belongs to Machine."
       },
       {
-        id: 'c',
-        text: 'Chất caffeine đã được chứng minh là luôn làm tăng chỉ số IQ của con người vô điều kiện.',
-        isCorrect: false,
-        explanation: 'Sai. Đây là phát biểu ngụy khoa học thiếu căn cứ.'
+        "id": "c",
+        "text": "Machine: Operating physical equipment, instruments, and hardware sensors.",
+        "isCorrect": true,
+        "explanation": "Spot on! The baking oven and its electronic thermal sensor are mechanical hardware tools classified under Machine."
+      },
+      {
+        "id": "d",
+        "text": "Man: Attributed to the psychological emotional fatigue experienced by head pastry chefs working early morning baking shifts.",
+        "isCorrect": false,
+        "explanation": "Incorrect. The sensor is a physical calibration hardware defect, not human fatigue."
       }
     ]
   },
   {
-    id: 'ssa_q12',
-    step: 'Tư Duy Phản Biện: Bẫy Thiên Kiến Xác Nhận (Confirmation Bias)',
-    scenario: 'Nhóm nghiên cứu tin rằng gen Z chỉ thích học qua video ngắn dưới 60 giây. Khi phỏng vấn người dùng, nhóm bỏ qua 8 câu trả lời của các bạn thích đọc giáo trình chi tiết và chỉ ghi chú lại 2 câu trả lời của các bạn thích xem TikTok.',
-    question: 'Hiện tượng tâm lý nguy hiểm nào đang diễn ra trong trường hợp này?',
-    options: [
+    "id": "en_q09",
+    "step": "Step 2: Hypothesis-Driven Structuring",
+    "scenario": "A tech firm starts investigating server slowdowns. The lead engineer insists on examining all 80 server microservices before forming any initial hypothesis.",
+    "question": "Why is an inductive \"boil the ocean\" approach inferior to hypothesis-driven problem solving?",
+    "options": [
       {
-        id: 'a',
-        text: 'Hiệu ứng Dunning-Kruger.',
-        isCorrect: false,
-        explanation: 'Sai. Dunning-Kruger là sự tự tin thái quá của người thiếu hiểu biết.'
+        "id": "a",
+        "text": "Testing all microservices ensures complete architectural comprehension and should precede any deductive hypothesis testing.",
+        "isCorrect": false,
+        "explanation": "Incorrect (Plausible Distractor). Exhaustively testing non-culprit systems wastes precious time during urgent outages."
       },
       {
-        id: 'b',
-        text: 'Thiên kiến xác nhận (Confirmation Bias): Chỉ tìm kiếm và ghi nhận thông tin củng cố niềm tin có sẵn, phớt lờ bằng chứng phản bác.',
-        isCorrect: true,
-        explanation: 'Chính xác! Tư duy phản biện đòi hỏi phải chủ động đi tìm các bằng chứng phản bác (Disconfirming Evidence) để thử thách giả định của mình.'
+        "id": "b",
+        "text": "Hypotheses focus data collection on high-probability bottlenecks first.",
+        "isCorrect": true,
+        "explanation": "Correct! Structured problem solvers formulate testable hypotheses to rapidly isolate and validate root causes."
       },
       {
-        id: 'c',
-        text: 'Ngụy biện Tấn công cá nhân (Ad Hominem).',
-        isCorrect: false,
-        explanation: 'Sai. Ở đây không có hành vi công kích xúc phạm người khác.'
+        "id": "c",
+        "text": "Modern cloud microservice architectures never generate diagnosable telemetry logs for performance monitoring.",
+        "isCorrect": false,
+        "explanation": "Incorrect. Microservices produce extensive telemetry; the problem is lack of focused prioritization."
+      },
+      {
+        "id": "d",
+        "text": "Senior software architects are legally forbidden from diagnosing backend systems without prior unanimous executive committee voting.",
+        "isCorrect": false,
+        "explanation": "Incorrect. Corporate governance does not mandate committee voting for technical server diagnostics."
       }
     ]
   },
   {
-    id: 'ssa_q13',
-    step: 'Tư Duy Phản Biện: Ngụy Biện Nhị Nguyên Giả Định (False Dilemma)',
-    scenario: 'Trong cuộc họp thảo luận về doanh số, một thành viên phát biểu: "Hoặc là chúng ta phải sa thải ngay 30% nhân sự để cắt giảm chi phí, hoặc là công ty sẽ phá sản trong tháng tới!".',
-    question: 'Lập luận trên mắc lỗi ngụy biện nào?',
-    options: [
+    "id": "en_q10",
+    "step": "Step 2: Correlation vs. Causation",
+    "scenario": "Data indicates software engineers drinking four cups of coffee daily submit 30% more code pull requests but also encounter 40% more critical system bugs.",
+    "question": "What analytical fallacy occurs if leadership concludes coffee causes code defects?",
+    "options": [
       {
-        id: 'a',
-        text: 'Ngụy biện Trượt dốc không phanh (Slippery Slope).',
-        isCorrect: false,
-        explanation: 'Sai. Đây không phải chuỗi hệ quả liên đới.'
+        "id": "a",
+        "text": "Failing to collect longitudinal biometric data across twenty thousand international developers to prove that caffeine chemically alters compiler code.",
+        "isCorrect": false,
+        "explanation": "Incorrect (Plausible Distractor). The issue is not lack of biometric trials, but attributing causality to an unadjusted correlation."
       },
       {
-        id: 'b',
-        text: 'Ngụy biện Nhị nguyên giả định (False Dilemma / Black-or-White): Cố tình ép người nghe vào 2 lựa chọn cực đoan trong khi còn nhiều giải pháp dung hòa khác.',
-        isCorrect: true,
-        explanation: 'Chính xác! Thực tế công ty có thể tái cơ cấu quy trình, đàm phán giảm chi phí thuê mặt bằng, tìm thị trường ngách mới thay vì chỉ có 2 thái cực.'
+        "id": "b",
+        "text": "Overlooking that heavy caffeine intake and coding bugs both stem from deadline crunch.",
+        "isCorrect": true,
+        "explanation": "Brilliant! A confounding third variable (workplace pressure and fatigue) causes both caffeine consumption and error rates."
       },
       {
-        id: 'c',
-        text: 'Lập luận hoàn toàn hợp lý vì quản trị kinh doanh chỉ có lãi hoặc lỗ.',
-        isCorrect: false,
-        explanation: 'Sai. Lối tư duy trắng đen triệt tiêu khả năng tìm kiếm các phương án thích ứng sáng tạo.'
-      }
-    ]
-  },
-
-  // =========================================================================
-  // BƯỚC 5: LẬP KẾ HOẠCH HÀNH ĐỘNG & QUẢN TRỊ RỦI RO (BACKUP PLANS)
-  // =========================================================================
-  {
-    id: 'ssa_q14',
-    step: 'Bước 5: Kế Hoạch Dự Phòng - Điểm Kích Hoạt (Trigger Point)',
-    scenario: 'Đội sự kiện lên kế hoạch tổ chức đêm nhạc ngoài trời. Nhóm chuẩn bị sẵn phương án B (thuê hội trường trong nhà). Tuy nhiên, đến sát giờ diễn khi trời đổ mưa to, nhóm mới bắt đầu gọi điện tìm người giữ chìa khóa hội trường.',
-    question: 'Một Kế hoạch dự phòng (Backup Plan) chuẩn mực thiếu sót yếu tố then chốt nào trong tình huống trên?',
-    options: [
-      {
-        id: 'a',
-        text: 'Xác định "Điểm kích hoạt" (Trigger Point) và kịch bản chuyển giao rõ ràng (ví dụ: nếu lúc 15h00 trời mưa >50% thì tự động kích hoạt Plan B ngay).',
-        isCorrect: true,
-        explanation: 'Tuyệt vời! Kế hoạch dự phòng mà không có mốc thời gian/điều kiện kích hoạt rõ ràng sẽ biến thành sự hoảng loạn vào phút chót.'
+        "id": "c",
+        "text": "Assuming sample sizes under five hundred thousand observations are completely invalid for exploratory enterprise organizational analytics.",
+        "isCorrect": false,
+        "explanation": "Incorrect. Moderate sample sizes yield valuable insights; the error is faulty causal inference."
       },
       {
-        id: 'b',
-        text: 'Đáng lẽ không nên chuẩn bị Plan B để toàn đội tập trung cầu nguyện cho trời nắng.',
-        isCorrect: false,
-        explanation: 'Sai lầm. Dựa vào may rủi là cấm kỵ trong quản trị rủi ro.'
-      },
-      {
-        id: 'c',
-        text: 'Kế hoạch dự phòng chỉ cần có ý tưởng trong đầu, không cần quy trình triển khai chi tiết.',
-        isCorrect: false,
-        explanation: 'Sai. Một Plan B khả thi phải sẵn sàng nguồn lực thực thi ngay lập tức.'
+        "id": "d",
+        "text": "Ignoring that beverage temperature correlates directly with keyboard mechanical switch degradation over prolonged seasonal testing.",
+        "isCorrect": false,
+        "explanation": "Incorrect. Spurious physical explanation unrelated to programmer cognitive workload."
       }
     ]
   },
   {
-    id: 'ssa_q15',
-    step: 'Bước 5: Nguyên Tắc MECE Trong Phân Rã Kế Hoạch',
-    scenario: 'Khi lập kế hoạch phân công công việc cho tuần lễ văn hóa trường, trưởng ban chia các nhóm nhiệm vụ thành: 1. Nhóm Truyền thông, 2. Nhóm Hậu cần, 3. Nhóm Thiết kế banner, 4. Nhóm Khách mời.',
-    question: 'Theo nguyên tắc MECE (Mutually Exclusive, Collectively Exhaustive), cách phân chia trên gặp vấn đề gì?',
-    options: [
+    "id": "en_q11",
+    "step": "Step 3: Pareto Principle (80/20 Rule)",
+    "scenario": "A technical helpdesk receives 400 support tickets across 8 distinct categories. Engineering capacity allows addressing only 2 categories this sprint.",
+    "question": "How does a disciplined team apply the Pareto Principle to prioritize?",
+    "options": [
       {
-        id: 'a',
-        text: 'Không có vấn đề gì, chia càng nhiều nhóm càng dễ quản lý.',
-        isCorrect: false,
-        explanation: 'Sai. Các nhóm bị chồng chéo trách nhiệm.'
+        "id": "a",
+        "text": "Distribute technical engineering hours uniformly across all eight ticket categories to ensure equitable treatment for every product team.",
+        "isCorrect": false,
+        "explanation": "Incorrect (Plausible Distractor). Uniform resource spreading dilutes focus so zero root issues get resolved permanently."
       },
       {
-        id: 'b',
-        text: 'Bị trùng lặp (Overlapping): "Thiết kế banner" vốn là một phần công việc trực thuộc "Truyền thông", gây đùn đẩy trách nhiệm và tranh chấp quyền hạn.',
-        isCorrect: true,
-        explanation: 'Rất chuẩn! MECE đòi hỏi các nhóm nhiệm vụ phải tách biệt rạch ròi, không chồng lấn lên nhau nhưng tổng thể phải bao quát toàn diện.'
+        "id": "b",
+        "text": "Target the 20% of root defect types that generate 80% of total customer tickets.",
+        "isCorrect": true,
+        "explanation": "Precisely! The Pareto Principle instructs problem solvers to isolate the \"Vital Few\" defects that yield disproportionate recovery impact."
       },
       {
-        id: 'c',
-        text: 'Thiếu nhóm phụ trách việc mua đồ ăn vặt cho ban tổ chức.',
-        isCorrect: false,
-        explanation: 'Sai. Đồ ăn vặt đã nằm trong phạm vi Hậu cần.'
-      }
-    ]
-  },
-
-  // =========================================================================
-  // BƯỚC 6: TRIỂN KHAI & QUẢN TRỊ CÁC BÊN LIÊN QUAN (STAKEHOLDERS)
-  // =========================================================================
-  {
-    id: 'ssa_q16',
-    step: 'Bước 6: Quản Trị Các Bên Liên Quan (Stakeholder Mapping)',
-    scenario: 'Trường đại học triển khai hệ thống điểm danh tự động bằng nhận diện khuôn mặt. Dự án bị đình trệ vì sinh viên phản đối kịch liệt vì lo ngại lộ lọt dữ liệu riêng tư.',
-    question: 'Đâu là sai lầm căn bản trong khâu phân tích các bên liên quan của ban dự án?',
-    options: [
-      {
-        id: 'a',
-        text: 'Xem nhẹ đối tượng có "Mối quan tâm cao nhưng ít quyền lực chính thức" (Sinh viên), không truyền thông minh bạch và giải tỏa nỗi lo bảo mật ngay từ đầu.',
-        isCorrect: true,
-        explanation: 'Chính xác! Ma trận Stakeholder nhắc nhở rằng nhóm có mối quan tâm cao nếu không được lắng nghe sẽ tạo ra sức kháng cự khổng lồ làm sụp đổ dự án.'
+        "id": "c",
+        "text": "Select whichever two defect types possess the shortest code descriptions regardless of how many customer accounts they disrupt.",
+        "isCorrect": false,
+        "explanation": "Incorrect. Prioritizing by brevity or convenience ignores measurable customer severity."
       },
       {
-        id: 'b',
-        text: 'Không ra quyết định kỷ luật ngay lập tức những sinh viên lên tiếng phản đối trên mạng xã hội.',
-        isCorrect: false,
-        explanation: 'Sai lầm. Biện pháp trấn áp chỉ làm bùng phát khủng hoảng truyền thông trầm trọng hơn.'
-      },
-      {
-        id: 'c',
-        text: 'Đáng lẽ nên âm thầm lắp đặt camera mà không thông báo cho sinh viên biết.',
-        isCorrect: false,
-        explanation: 'Sai nghiêm trọng. Vi phạm đạo đức nghề nghiệp và pháp luật về bảo vệ dữ liệu cá nhân.'
+        "id": "d",
+        "text": "Delay all bug remediation efforts until the subsequent fiscal quarter while commissioning third-party management consulting audits.",
+        "isCorrect": false,
+        "explanation": "Incorrect. Bureaucratic procrastination allows severe defects to degrade customer retention unchecked."
       }
     ]
   },
   {
-    id: 'ssa_q17',
-    step: 'Bước 6: Đàm Phán Tích Hợp (Win-Win vs. Zero-Sum)',
-    scenario: 'Nhóm sinh viên tranh cãi về địa điểm làm bài tập lớn: Nhóm A muốn học ở quán cà phê ồn ào để có cảm hứng, Nhóm B muốn ở thư viện yên tĩnh để tập trung.',
-    question: 'Tư duy giải quyết vấn đề Win-Win (Thắng - Thắng) tiếp cận tình huống này như thế nào?',
-    options: [
+    "id": "en_q12",
+    "step": "Step 3: Impact vs. Effort Prioritization Matrix",
+    "scenario": "During a product sprint, a team brainstorms 20 feature ideas. Four ideas require minimal coding effort and yield immediate revenue lift, while others require 6 months of work.",
+    "question": "In which quadrant of the 2x2 Impact-Effort Matrix do these 4 high-yield features sit?",
+    "options": [
       {
-        id: 'a',
-        text: 'Biểu quyết theo đa số, bên thua cuộc phải chấp nhận làm việc trong bực bội.',
-        isCorrect: false,
-        explanation: 'Đây là tư duy Zero-Sum (Thắng - Thua), gây rạn nứt tinh thần đồng đội.'
+        "id": "a",
+        "text": "Low Impact, High Effort: Categorized as \"Money Pits\" that require extensive architectural consensus building before initiation.",
+        "isCorrect": false,
+        "explanation": "Incorrect. Low impact and high effort characterize bad investments, not high-yield features."
       },
       {
-        id: 'b',
-        text: 'Chia tách thành 2 ca: 1 tiếng đầu ở quán cà phê để động não ý tưởng tự do, sau đó di chuyển sang phòng tự học thư viện để hoàn thiện bài viết.',
-        isCorrect: true,
-        explanation: 'Rất xuất sắc! Đàm phán tích hợp tìm kiếm giải pháp đáp ứng nhu cầu thực chất của cả hai bên thay vì thỏa hiệp cào bằng kém hiệu quả.'
+        "id": "b",
+        "text": "High Impact, Low Effort: Designated as \"Quick Wins\" for immediate execution.",
+        "isCorrect": true,
+        "explanation": "Spot on! High impact with low effort delivers immediate ROI, known as \"Quick Wins\"."
       },
       {
-        id: 'c',
-        text: 'Hủy buổi học nhóm và ai tự làm phần người nấy.',
-        isCorrect: false,
-        explanation: 'Đây là tư duy Né tránh (Lose - Lose).'
+        "id": "c",
+        "text": "Low Impact, Low Effort: Classified as \"Fill-In Distractions\" that should only be pursued when developers run out of tasks.",
+        "isCorrect": false,
+        "explanation": "Incorrect (Plausible Distractor). These features yield significant revenue, so they are high impact."
+      },
+      {
+        "id": "d",
+        "text": "High Effort, Low Feasibility: Labeled as \"Moonshot Explorations\" requiring venture capital syndication prior to backlog grooming.",
+        "isCorrect": false,
+        "explanation": "Incorrect. The features require minimal effort and are immediately viable."
       }
     ]
   },
   {
-    id: 'ssa_q18',
-    step: 'Tư Duy Phản Biện: Bẫy Tư Duy Tập Thể (Groupthink)',
-    scenario: 'Trong cuộc họp, khi sếp đưa ra một giải pháp có lỗ hổng bảo mật rõ ràng, tất cả các thành viên đều nhận ra nhưng không ai dám lên tiếng vì sợ bị coi là "kẻ phá rối" và muốn giữ hòa khí.',
-    question: 'Hiện tượng tâm lý xã hội nguy hiểm nào đang làm tê liệt năng lực phản biện của tập thể này?',
-    options: [
+    "id": "en_q13",
+    "step": "Step 3: Eliminating Non-Critical Branches",
+    "scenario": "A university committee investigating campus parking congestion spends 60 hours debating whether to redesign visitor parking permit stamp ink colors.",
+    "question": "What prioritization failure (Law of Triviality / Bikeshedding) occurred?",
+    "options": [
       {
-        id: 'a',
-        text: 'Hiệu ứng Bàng quan (Bystander Effect).',
-        isCorrect: false,
-        explanation: 'Sai. Hiệu ứng bàng quan thường xảy ra khi chứng kiến người bị nạn nơi công cộng.'
+        "id": "a",
+        "text": "Failing to eliminate low-impact trivial issues in favor of major capacity bottlenecks.",
+        "isCorrect": true,
+        "explanation": "Correct! Teams fall into Parkinson’s Law of Triviality when they spend outsized time on trivial details because they are easy to understand."
       },
       {
-        id: 'b',
-        text: 'Bẫy Tư duy tập thể (Groupthink) - Nơi áp lực đồng thuận đè bẹp sự đánh giá phản biện độc lập.',
-        isCorrect: true,
-        explanation: 'Chính xác! Groupthink là nguyên nhân của nhiều thảm họa kinh tế và kỹ thuật. Cần cử ra một "Người phản biện đóng vai ác" (Devil\'s Advocate) để phá vỡ bẫy này.'
+        "id": "b",
+        "text": "Stamp ink color decisions represent crucial visual branding touchpoints that dictate long-term university student matriculation loyalty.",
+        "isCorrect": false,
+        "explanation": "Incorrect (Plausible Distractor). Ink colors have negligible impact on physical parking stall capacity."
       },
       {
-        id: 'c',
-        text: 'Sự đoàn kết và tôn trọng cấp trên tuyệt đối.',
-        isCorrect: false,
-        explanation: 'Sai lầm. Hòa khí giả tạo không đồng nghĩa với hiệu quả công việc thực chất.'
-      }
-    ]
-  },
-
-  // =========================================================================
-  // BƯỚC 7: ĐÁNH GIÁ, ĐO LƯỜNG & HỌP RÚT KINH NGHIỆM (POST-MORTEM)
-  // =========================================================================
-  {
-    id: 'ssa_q19',
-    step: 'Bước 7: Đánh Giá - Họp Rút Kinh Nghiệm Không Đổ Lỗi (Blameless Post-Mortem)',
-    scenario: 'Sau sự cố sập máy chủ đăng ký tín chỉ vào ngày đầu học kỳ, phòng Khảo thí tổ chức cuộc họp rút kinh nghiệm.',
-    question: 'Nguyên tắc cốt lõi của một buổi "Họp rút kinh nghiệm không đổ lỗi" (Blameless Post-mortem) là gì?',
-    options: [
-      {
-        id: 'a',
-        text: 'Truy tìm cho bằng được lập trình viên nào đã đẩy code lỗi lên hệ thống để trừ lương răn đe.',
-        isCorrect: false,
-        explanation: 'Sai lầm. Văn hóa chỉ trích cá nhân sẽ khiến nhân viên giấu giếm lỗi trong tương lai.'
+        "id": "c",
+        "text": "The committee should have requisitioned five thousand liters of fluorescent reflective ink before conducting preliminary parking lot counts.",
+        "isCorrect": false,
+        "explanation": "Incorrect. Wasteful procurement that escalates an already trivial tangent."
       },
       {
-        id: 'b',
-        text: 'Tập trung điều tra: Lỗ hổng nào trong quy trình kiểm thử và cơ chế chịu tải đã cho phép lỗi này xảy ra mà không bị phát hiện sớm.',
-        isCorrect: true,
-        explanation: 'Rất chuẩn mực! Coi con người là nạn nhân của một hệ thống có lỗ hổng. Sửa chữa quy trình và tự động hóa mới ngăn ngừa được lỗi tái diễn.'
-      },
-      {
-        id: 'c',
-        text: 'Đồng ý rằng sự cố sập mạng là do ông trời xui xẻo và không ai có lỗi.',
-        isCorrect: false,
-        explanation: 'Sai lầm. Đây là thái độ vô trách nhiệm, không tạo ra bất kỳ bài học kinh nghiệm nào.'
+        "id": "d",
+        "text": "Parking congestion cannot be analyzed without first calculating the astronomical gravitational pull on passenger sedans during full moon phases.",
+        "isCorrect": false,
+        "explanation": "Incorrect. Absurd distraction having zero bearing on urban transportation engineering."
       }
     ]
   },
   {
-    id: 'ssa_q20',
-    step: 'Tư Duy Phản Biện: Ngụy Biện Tấn Công Cá Nhân (Ad Hominem)',
-    scenario: 'Trong buổi tranh biện về chính sách bảo vệ môi trường, bạn A đưa ra số liệu thống kê chứng minh túi vải tote có lượng phát thải carbon lớn hơn túi nilon nếu không tái sử dụng trên 100 lần. Bạn B phản bác: "Bạn A gia đình buôn bán đồ nhựa nên nói thế là vì tư lợi cá nhân, đừng ai tin!".',
-    question: 'Bạn B đã phạm phải lỗi ngụy biện nào?',
-    options: [
+    "id": "en_q14",
+    "step": "Step 3: Forced Ranking & Resource Constraints",
+    "scenario": "A student startup with $2,000 budget lists 12 marketing initiatives. The founder declares all 12 are equally \"Top Priority 1\" and must receive identical funding.",
+    "question": "Why is declaring all initiatives \"Top Priority\" a leadership failure?",
+    "options": [
       {
-        id: 'a',
-        text: 'Ngụy biện Tấn công cá nhân (Ad Hominem): Tấn công vào thân thế, động cơ hoặc xuất thân của người nói thay vì phản biện tính đúng sai của số liệu.',
-        isCorrect: true,
-        explanation: 'Chính xác! Lập luận logic phải được đánh giá dựa trên bằng chứng và dữ liệu, không phải dựa trên danh tính người đưa ra lập luận.'
+        "id": "a",
+        "text": "Democracy requires that every marketing channel receive equal budgetary disbursements to protect organizational team harmony.",
+        "isCorrect": false,
+        "explanation": "Incorrect (Plausible Distractor). Equal distribution without prioritization guarantees underfunded, ineffective campaigns."
       },
       {
-        id: 'b',
-        text: 'Ngụy biện Đánh tráo khái niệm (Equivocation).',
-        isCorrect: false,
-        explanation: 'Sai. Bạn B không dùng từ ngữ hai nghĩa.'
+        "id": "b",
+        "text": "When everything is a priority, nothing is, causing fragmented budgets and zero impact.",
+        "isCorrect": true,
+        "explanation": "Accurate! True prioritization requires tough trade-offs and forced ranking under scarce capital constraints."
       },
       {
-        id: 'c',
-        text: 'Lập luận bạn B hoàn toàn có lý vì động cơ cá nhân quyết định 100% tính chân lý của số liệu.',
-        isCorrect: false,
-        explanation: 'Sai lầm. Ngay cả một kẻ gian nói "1 + 1 = 2" thì phát biểu đó vẫn đúng.'
+        "id": "c",
+        "text": "Marketing initiatives must never be funded using cash reserves until after the company files for an initial public offering on NASDAQ.",
+        "isCorrect": false,
+        "explanation": "Incorrect. Pre-IPO startups must market their offerings to gain early traction."
+      },
+      {
+        "id": "d",
+        "text": "Advertising agencies require minimum retainer deposits of two million dollars before accepting preliminary telephone consultation calls.",
+        "isCorrect": false,
+        "explanation": "Incorrect. False premise unrelated to the internal logic of priority setting."
       }
     ]
   },
   {
-    id: 'ssa_q21',
-    step: 'Tư Duy Phản Biện: Ngụy Biện Người Rơm (Strawman)',
-    scenario: 'Thành viên X đề xuất: "Để tăng chất lượng bài thuyết trình, nhóm mình nên dành thêm 30 phút kiểm tra lại các nguồn trích dẫn". Thành viên Y đập bàn nói: "Ý bạn là chúng tôi trước giờ toàn đạo văn và làm việc cẩu thả đúng không?".',
-    question: 'Thành viên Y đã sử dụng ngụy biện gì để công kích đề xuất của bạn X?',
-    options: [
+    "id": "en_q15",
+    "step": "Step 3: Opportunity Cost in Decision Making",
+    "scenario": "An app team spends three weeks hand-coding a custom internal chat widget instead of integrating a proven free open-source plugin, delaying their core payment feature launch.",
+    "question": "What economic and problem-solving concept illustrates the cost of this choice?",
+    "options": [
       {
-        id: 'a',
-        text: 'Ngụy biện Đòn bẩy quyền lực.',
-        isCorrect: false,
-        explanation: 'Sai. Y không dùng quyền lực chức vụ.'
+        "id": "a",
+        "text": "Opportunity Cost: The lost value of not launching core payments three weeks earlier.",
+        "isCorrect": true,
+        "explanation": "Precisely! Opportunity cost measures the lost revenue and advantage of the best forgone alternative."
       },
       {
-        id: 'b',
-        text: 'Ngụy biện Người rơm (Strawman): Cố tình bóp méo, thổi phồng hoặc biến tướng luận điểm của đối phương thành một phiên bản vô lý rồi tấn công vào phiên bản méo mó đó.',
-        isCorrect: true,
-        explanation: 'Xuất sắc! Bạn X chỉ muốn rà soát chất lượng, nhưng bạn Y đã bóp méo thành lời cáo buộc "đạo văn cẩu thả" để tạo cớ công kích.'
+        "id": "b",
+        "text": "The Sunk Capital Asset Preservation Metric: Documenting internal development hours to claim intellectual property patent protections.",
+        "isCorrect": false,
+        "explanation": "Incorrect (Plausible Distractor). Building commodity chat widgets from scratch confers no patent advantage and delays market launch."
       },
       {
-        id: 'c',
-        text: 'Ngụy biện Viện dẫn số đông (Bandwagon).',
-        isCorrect: false,
-        explanation: 'Sai. Ở đây không đề cập đến ý kiến số đông.'
+        "id": "c",
+        "text": "Economies of Scale: Decreasing average marginal unit costs achieved through continuous internal proprietary code typing.",
+        "isCorrect": false,
+        "explanation": "Incorrect. Economies of scale apply to volume production, not reinventing existing wheels."
+      },
+      {
+        "id": "d",
+        "text": "Regulatory Monopolistic Rent-Seeking: Generating statutory barriers to prevent third-party payment gateways from serving students.",
+        "isCorrect": false,
+        "explanation": "Incorrect. Irrelevant regulatory concept that has nothing to do with internal team time allocation."
       }
     ]
   },
   {
-    id: 'ssa_q22',
-    step: 'Bước 6: Thu Hẹp Khoảng Cách Thực Thi (Implementation Gap)',
-    scenario: 'Một kế hoạch cải tiến quy trình học tập được cả nhóm nhất trí 100% trên giấy, nhưng sau 2 tuần triển khai thực tế, không có bất kỳ đầu việc nào hoàn thành đúng hạn.',
-    question: 'Đâu là nguyên nhân phổ biến nhất dẫn đến "Khoảng cách thực thi" (Implementation Gap) này?',
-    options: [
+    "id": "en_q16",
+    "step": "Step 4: Confirmation Bias in Research",
+    "scenario": "A founder convinced students hate cafeteria sushi searches Google exclusively for \"cafeteria sushi food poisoning complaints\" and ignores satisfaction surveys showing 92% approval.",
+    "question": "Which cognitive bias severely distorts the founder’s data analysis?",
+    "options": [
       {
-        id: 'a',
-        text: 'Các đầu việc không được gán cụ thể cho một cá nhân chịu trách nhiệm chính (RACI Matrix) và thiếu các mốc kiểm tra định kỳ (Check-in milestones).',
-        isCorrect: true,
-        explanation: 'Rất chính xác! Trách nhiệm chung là không ai chịu trách nhiệm. Mô hình RACI (Responsible, Accountable, Consulted, Informed) là chìa khóa để kế hoạch biến thành hành động.'
+        "id": "a",
+        "text": "Systemic Availability Heuristic: Evaluating event likelihoods based solely on the vivid emotional recall of catastrophic public disasters.",
+        "isCorrect": false,
+        "explanation": "Incorrect (Plausible Distractor). While related, actively searching only for confirming queries is classic confirmation bias."
       },
       {
-        id: 'b',
-        text: 'Do kế hoạch chưa được in ra trên giấy màu đẹp mắt.',
-        isCorrect: false,
-        explanation: 'Sai. Hình thức trình bày không quyết định năng lực kỷ luật thực thi.'
+        "id": "b",
+        "text": "Confirmation Bias: Seeking data that confirms preconceptions while dismissing counter-evidence.",
+        "isCorrect": true,
+        "explanation": "Spot on! Confirmation bias blinds investigators by cherry-picking evidence that supports preconceived beliefs."
       },
       {
-        id: 'c',
-        text: 'Do các thành viên nhóm đều có chỉ số IQ quá cao nên không phù hợp làm việc chi tiết.',
-        isCorrect: false,
-        explanation: 'Sai lầm và ngụy biện.'
+        "id": "c",
+        "text": "Hindsight Bias: Falsely believing after an outcome occurs that one had accurately predicted it all along.",
+        "isCorrect": false,
+        "explanation": "Incorrect. Hindsight bias occurs post-event; this is active distortion of ongoing data gathering."
+      },
+      {
+        "id": "d",
+        "text": "The Bandwagon Effect: Uncritically adopting ideological dogmas simply because the majority of surrounding peers endorse them.",
+        "isCorrect": false,
+        "explanation": "Incorrect. The founder is acting against the 92% majority consensus."
       }
     ]
   },
   {
-    id: 'ssa_q23',
-    step: 'Tư Duy Phản Biện: Hiệu Ứng Đóng Khung (Framing Effect)',
-    scenario: 'Khi đề xuất áp dụng phần mềm học trực tuyến mới cho lớp, nhóm A thông báo: "Phần mềm này có tỷ lệ thành công 90%". Nhóm B lại thông báo: "Phần mềm này có tỷ lệ rủi ro thất bại 10%". Kết quả lớp biểu quyết ủng hộ nhóm A vượt trội.',
-    question: 'Hiện tượng này phản ánh bẫy tâm lý nào trong ra quyết định?',
-    options: [
+    "id": "en_q17",
+    "step": "Step 4: Primary vs. Secondary Research",
+    "scenario": "To solve long wait lines at the campus health clinic, an analyst reads ten generic medical journal articles from 2012 rather than interviewing clinic nurses and observing patient triage.",
+    "question": "Why is relying solely on 12-year-old secondary research flawed here?",
+    "options": [
       {
-        id: 'a',
-        text: 'Hiệu ứng Đóng khung (Framing Effect): Cách diễn đạt và đóng khung thông tin làm thay đổi hoàn toàn nhận thức và phản ứng của người nghe dù bản chất dữ liệu là giống hệt nhau.',
-        isCorrect: true,
-        explanation: 'Chính xác! Người có tư duy phản biện phải biết "tách vỏ bọc ngôn từ" để nhìn vào giá trị toán học thực tế của dữ liệu.'
+        "id": "a",
+        "text": "Secondary literature lacks localized context, real-time workflow observations, and stakeholder reality.",
+        "isCorrect": true,
+        "explanation": "Correct! Step 4 requires fact-based primary field data to understand immediate operational bottlenecks."
       },
       {
-        id: 'b',
-        text: 'Hiệu ứng Mỏ neo (Anchoring Bias).',
-        isCorrect: false,
-        explanation: 'Sai. Hiệu ứng mỏ neo liên quan đến việc bị ấn tượng bởi con số đầu tiên được đưa ra trong đàm phán giá cả.'
+        "id": "b",
+        "text": "Peer-reviewed academic journals published prior to 2020 are legally prohibited from being cited in operational healthcare engineering audits.",
+        "isCorrect": false,
+        "explanation": "Incorrect (Plausible Distractor). Literature is not legally barred, but outdated general studies cannot diagnose local bottlenecks."
       },
       {
-        id: 'c',
-        text: 'Phần mềm của nhóm A thực sự tốt hơn phần mềm của nhóm B gấp 9 lần.',
-        isCorrect: false,
-        explanation: 'Sai hoàn toàn. 90% thành công và 10% thất bại là 2 cách nói của cùng một xác suất.'
+        "id": "c",
+        "text": "On-site interviews with registered nurses violate international biometric data privacy treaties governing clinical personnel.",
+        "isCorrect": false,
+        "explanation": "Incorrect. Standard operational workflow interviews do not violate privacy treaties when conducted properly."
+      },
+      {
+        "id": "d",
+        "text": "Observational triage research requires clinical investigators to possess active board-certified surgical operating licenses.",
+        "isCorrect": false,
+        "explanation": "Incorrect. Operational process mapping requires analytical observation, not surgical credentials."
       }
     ]
   },
   {
-    id: 'ssa_q24',
-    step: 'Tư Duy Sáng Tạo: Kỹ Thuật Đảo Ngược Vấn Đề (Reverse Thinking)',
-    scenario: 'Một doanh nghiệp du lịch muốn nâng cao chất lượng tour trong mùa thấp điểm. Thay vì hỏi: "Làm thế nào để khách hàng hài lòng hơn?", người điều phối hỏi: "Chúng ta có thể làm những điều tồi tệ nào để khiến khách hàng ức chế và không bao giờ quay lại?".',
-    question: 'Mục đích thực sự của phương pháp "Tư duy đảo ngược" (Reverse Problem Solving) là gì?',
-    options: [
+    "id": "en_q18",
+    "step": "Step 4: Survivorship Bias in Benchmarking",
+    "scenario": "A student entrepreneur analyzes the biographies of Steve Jobs, Bill Gates, and Mark Zuckerberg, concluding that dropping out of college guarantees startup unicorn success.",
+    "question": "Which sampling and analytical error misled the student?",
+    "options": [
       {
-        id: 'a',
-        text: 'Để trêu đùa và giải tỏa căng thẳng cho nhân viên trong giờ họp.',
-        isCorrect: false,
-        explanation: 'Sai. Đây là một phương pháp tư duy sáng tạo nghiêm túc.'
+        "id": "a",
+        "text": "Clustering Illusion: Mistaking random probabilistic distribution patterns in small sample sizes for intentional strategic conspiracies.",
+        "isCorrect": false,
+        "explanation": "Incorrect. The error is looking only at successful outliers, not misinterpreting random clusters."
       },
       {
-        id: 'b',
-        text: 'Khai phóng tư duy bằng cách liệt kê các hành vi phá hoại tiềm ẩn, từ đó nhận diện được những điểm mù chết người mà bình thường không ai dám thừa nhận để phòng tránh.',
-        isCorrect: true,
-        explanation: 'Tuyệt vời! Con người thường dễ dàng chỉ ra những điều tiêu cực hơn là nghĩ ra điều hoàn hảo. Từ danh sách những điều gây hại, ta đảo ngược lại để tìm ra các giải pháp cải tiến bất ngờ.'
+        "id": "b",
+        "text": "Survivorship Bias: Studying successful outliers while ignoring thousands of dropouts who failed.",
+        "isCorrect": true,
+        "explanation": "Spot on! Survivorship bias analyzes only \"survivors\" of a filter, reaching wildly inaccurate conclusions about causality."
       },
       {
-        id: 'c',
-        text: 'Để chuẩn bị phương án trả đũa những khách hàng khó tính.',
-        isCorrect: false,
-        explanation: 'Sai nghiêm trọng về mặt đạo đức kinh doanh.'
+        "id": "c",
+        "text": "Gambler’s Fallacy: Believing past independent random events dictate the statistical probability of upcoming independent trials.",
+        "isCorrect": false,
+        "explanation": "Incorrect. The fallacy here stems from filtered sampling, not coin-flip probability logic."
+      },
+      {
+        "id": "d",
+        "text": "Fundamental Attribution Error: Overestimating situational environmental factors while underestimating personal moral integrity.",
+        "isCorrect": false,
+        "explanation": "Incorrect. Attribution theory explains interpersonal judgment, whereas this is classic survivorship selection bias."
+      }
+    ]
+  },
+  {
+    "id": "en_q19",
+    "step": "Step 4: Triangulation of Data Sources",
+    "scenario": "An IT team investigates system slowness. Rather than relying solely on user complaints, they combine helpdesk logs, real-time server telemetry, and controlled synthetic network pings.",
+    "question": "Why does this method (Triangulation) produce superior analytical findings?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Cross-verifies subjective user sentiment with objective technical machine metrics.",
+        "isCorrect": true,
+        "explanation": "Accurate! Triangulating multiple qualitative and quantitative sources filters out subjective bias and reveals ground truth."
+      },
+      {
+        "id": "b",
+        "text": "Triangulation guarantees that network infrastructure operates at three times the speed of conventional linear diagnostic architectures.",
+        "isCorrect": false,
+        "explanation": "Incorrect (Plausible Distractor). Triangulation is an analytical methodology, not a network acceleration protocol."
+      },
+      {
+        "id": "c",
+        "text": "Collecting multiple data streams eliminates the legal requirement to maintain encrypted secure offsite database backup servers.",
+        "isCorrect": false,
+        "explanation": "Incorrect. Data security requirements remain mandatory regardless of analytical methodology."
+      },
+      {
+        "id": "d",
+        "text": "Machine telemetry metrics automatically fabricate synthetic customer satisfaction survey scores with ninety-nine percent accuracy.",
+        "isCorrect": false,
+        "explanation": "Incorrect. Telemetry monitors hardware and software performance, not subjective emotional user sentiment."
+      }
+    ]
+  },
+  {
+    "id": "en_q20",
+    "step": "Step 4: Identifying Confounding Variables",
+    "scenario": "A campus fitness center notes gym visits drop 40% every December. The manager concludes students lose interest in personal health at year-end and plans to cancel equipment leases.",
+    "question": "What confounding variable did the fitness manager completely overlook?",
+    "options": [
+      {
+        "id": "a",
+        "text": "December coincides with intense final exams and campus winter recess closures.",
+        "isCorrect": true,
+        "explanation": "Spot on! Academic calendars and winter break explain the seasonal drop, not a permanent loss of health interest."
+      },
+      {
+        "id": "b",
+        "text": "Undergraduate student biological metabolisms automatically decelerate by forty percent during winter solstice planetary rotations.",
+        "isCorrect": false,
+        "explanation": "Incorrect (Plausible Distractor). Pseudoscience assertion that ignores academic schedules and holiday closures."
+      },
+      {
+        "id": "c",
+        "text": "The gym manager failed to install high-frequency infrared heating lamps across the entire outdoor university running track.",
+        "isCorrect": false,
+        "explanation": "Incorrect. Facility heating does not explain why students leave campus for winter break."
+      },
+      {
+        "id": "d",
+        "text": "Modern exercise bicycles undergo mandatory mechanical firmware resets administered remotely by federal athletic authorities every December.",
+        "isCorrect": false,
+        "explanation": "Incorrect. Fictional bureaucratic distraction irrelevant to seasonal student attendance."
+      }
+    ]
+  },
+  {
+    "id": "en_q21",
+    "step": "Step 5: Minto Pyramid Principle Structure",
+    "scenario": "A student presents a project report by reading 45 slides of raw statistical tables for 30 minutes before revealing their main recommendation in the final 10 seconds.",
+    "question": "How does Barbara Minto’s Pyramid Principle recommend restructuring this presentation?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Start with the governing recommendation first, supported by grouped key arguments and data.",
+        "isCorrect": true,
+        "explanation": "Correct! Top-down communication states the core conclusion first, enabling busy decision-makers to grasp the message immediately."
+      },
+      {
+        "id": "b",
+        "text": "Extend the preliminary methodological literature review section to sixty slides before presenting any quantitative empirical findings.",
+        "isCorrect": false,
+        "explanation": "Incorrect (Plausible Distractor). Lengthening background slides compounds executive fatigue and obscures conclusions."
+      },
+      {
+        "id": "c",
+        "text": "Disguise the final conclusion entirely so executive stakeholders must independently deduce the strategic takeaway through deductive reasoning.",
+        "isCorrect": false,
+        "explanation": "Incorrect. Forcing audiences to guess your point creates confusion and indecision."
+      },
+      {
+        "id": "d",
+        "text": "Replace all verbal slides with thirty minutes of synchronized interpretive dance illustrating macroeconomic supply and demand curves.",
+        "isCorrect": false,
+        "explanation": "Incorrect. Absurd visual stunt that destroys professional business credibility."
+      }
+    ]
+  },
+  {
+    "id": "en_q22",
+    "step": "Step 5: The \"So What?\" Test in Synthesis",
+    "scenario": "A market research analyst reports: \"73% of campus commuters travel by bus and wait an average of 18 minutes.\" The executive sponsor replies: \"So what?\"",
+    "question": "What crucial element of synthesis did the analyst fail to provide?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Failing to execute an interactive Monte Carlo algorithmic simulation illustrating random passenger bus boarding intervals.",
+        "isCorrect": false,
+        "explanation": "Incorrect (Plausible Distractor). Complex simulations do not answer \"So what?\" without strategic takeaways."
+      },
+      {
+        "id": "b",
+        "text": "The actionable strategic implication and recommended intervention for the business.",
+        "isCorrect": true,
+        "explanation": "Spot on! Data is useless without answering \"So What?\"—explaining why it matters and what action must follow."
+      },
+      {
+        "id": "c",
+        "text": "Omitting the vehicle identification numbers and tire manufacturing dates of all city transit buses operating near campus.",
+        "isCorrect": false,
+        "explanation": "Incorrect. Excessive operational minutiae dilutes strategic insight."
+      },
+      {
+        "id": "d",
+        "text": "Failing to translate the statistical report into Classical Latin for archival preservation within the university rare books repository.",
+        "isCorrect": false,
+        "explanation": "Incorrect. Pretentious academic distraction irrelevant to operational problem solving."
+      }
+    ]
+  },
+  {
+    "id": "en_q23",
+    "step": "Step 5: Synthesizing vs. Summarizing",
+    "scenario": "After conducting 30 student interviews, Team A lists all 30 interview transcripts in chronological bullet points. Team B synthesizes them into 3 actionable thematic insights.",
+    "question": "Why does Team B’s approach represent genuine synthesis rather than mere summary?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Team A demonstrated superior academic rigor because longer verbatim transcript lists provide exhaustive transparency for leadership.",
+        "isCorrect": false,
+        "explanation": "Incorrect (Plausible Distractor). Dumping raw data forces leadership to do the analytical heavy lifting."
+      },
+      {
+        "id": "b",
+        "text": "Synthesis distills disparate data into coherent, forward-looking insights that drive decisions.",
+        "isCorrect": true,
+        "explanation": "Accurate! Summary recaps the past; synthesis connects the dots to generate actionable future direction."
+      },
+      {
+        "id": "c",
+        "text": "Team B should have discarded all qualitative research and replaced it with fabricated regression models to appear more quantitative.",
+        "isCorrect": false,
+        "explanation": "Incorrect. Fabricating data is unethical and destroys decision validity."
+      },
+      {
+        "id": "d",
+        "text": "Executive committees are legally prohibited from reviewing business presentations containing fewer than fifty thousand words.",
+        "isCorrect": false,
+        "explanation": "Incorrect. Executives value brevity, clarity, and synthesized actionable recommendations."
+      }
+    ]
+  },
+  {
+    "id": "en_q24",
+    "step": "Step 5: Executive Communication & SCQA Framework",
+    "scenario": "A project lead uses the SCQA framework (Situation, Complication, Question, Answer) to pitch a digital sign-in kiosk to the university chancellor.",
+    "question": "Which component represents the \"Complication\" in this structure?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Manual paper logs cause 25-minute registration delays, breaching fire safety crowd codes.",
+        "isCorrect": true,
+        "explanation": "Correct! The complication describes the emerging tension or breakdown that destabilizes the baseline situation."
+      },
+      {
+        "id": "b",
+        "text": "The university currently maintains twelve administrative campus buildings welcoming thousands of enrolled undergraduate scholars.",
+        "isCorrect": false,
+        "explanation": "Incorrect. This describes the baseline Situation, not the disruptive Complication."
+      },
+      {
+        "id": "c",
+        "text": "We recommend installing four automated self-service biometric iPad kiosks in the primary administrative welcome lobby.",
+        "isCorrect": false,
+        "explanation": "Incorrect (Plausible Distractor). This is the Answer / Solution, not the Complication."
+      },
+      {
+        "id": "d",
+        "text": "How can the administration streamline front-desk visitor processing without recruiting additional full-time personnel?",
+        "isCorrect": false,
+        "explanation": "Incorrect. This is the Question arising from the complication."
+      }
+    ]
+  },
+  {
+    "id": "en_q25",
+    "step": "Step 5: Actionable Recommendations",
+    "scenario": "A consulting report concludes: \"The university should foster holistic synergy and pursue excellence in digital transformation across all educational paradigms.\"",
+    "question": "What is the fatal flaw in this recommendation?",
+    "options": [
+      {
+        "id": "a",
+        "text": "It consists of vague corporate buzzwords lacking specific owners, metrics, and actionable steps.",
+        "isCorrect": true,
+        "explanation": "Spot on! A sound recommendation specifies Who does What, by When, with What Resources and Success Metrics."
+      },
+      {
+        "id": "b",
+        "text": "The recommendation should have included at least forty additional syllables of abstract post-structuralist philosophical jargon.",
+        "isCorrect": false,
+        "explanation": "Incorrect (Plausible Distractor). Adding more jargon makes the recommendation even less actionable."
+      },
+      {
+        "id": "c",
+        "text": "Digital transformation cannot legally occur within educational institutions without simultaneous federal congressional approval.",
+        "isCorrect": false,
+        "explanation": "Incorrect. Schools regularly adopt digital tools without congressional intervention."
+      },
+      {
+        "id": "d",
+        "text": "The report should have mandated that all teaching faculty immediately surrender personal cell phones to administrative storage.",
+        "isCorrect": false,
+        "explanation": "Incorrect. Draconian policy suggestion having no connection to actionable strategy."
+      }
+    ]
+  },
+  {
+    "id": "en_q26",
+    "step": "Step 6: Pre-Mortem Analysis",
+    "scenario": "Before launching an online student course-registration portal, the lead architect gathers the team and asks: \"Imagine it is day 1, the system has completely crashed. What went wrong?\"",
+    "question": "What is the strategic purpose of conducting a \"Pre-Mortem\" in Step 6?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Conducting pre-mortems induces demoralizing defeatism that permanently damages engineering team psychological velocity.",
+        "isCorrect": false,
+        "explanation": "Incorrect (Plausible Distractor). Pre-mortems build resilience by proactively anticipating vulnerabilities."
+      },
+      {
+        "id": "b",
+        "text": "Identifies hidden operational risks and failure modes before launch, enabling preventive mitigation.",
+        "isCorrect": true,
+        "explanation": "Correct! Gary Klein’s Pre-Mortem removes optimism bias and surfaces latent failure points before they occur."
+      },
+      {
+        "id": "c",
+        "text": "Assigning legal liability and scapegoat blame to specific junior developers prior to testing code in production.",
+        "isCorrect": false,
+        "explanation": "Incorrect. Pre-mortems uncover systemic risks, never assign personal blame."
+      },
+      {
+        "id": "d",
+        "text": "Pre-mortems allow management to cancel all software projects and return invested venture capital to sovereign wealth funds.",
+        "isCorrect": false,
+        "explanation": "Incorrect. The goal is project success through preventive hardening, not project cancellation."
+      }
+    ]
+  },
+  {
+    "id": "en_q27",
+    "step": "Step 6: Trade-Off Analysis & Decision Matrices",
+    "scenario": "A student startup must choose between Option A (cheap, slow, highly reliable) and Option B (expensive, fast, untested). The CEO insists Option A is universally superior on all dimensions.",
+    "question": "What critical principle of decision making does the CEO fail to acknowledge?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Every strategic decision entails trade-offs where gains in one dimension require sacrifices in others.",
+        "isCorrect": true,
+        "explanation": "Spot on! There are no solutions without trade-offs. Pretending one choice has zero downsides is naive."
+      },
+      {
+        "id": "b",
+        "text": "Startups should always choose whichever option has the highest financial expense to impress potential seed-stage angel investors.",
+        "isCorrect": false,
+        "explanation": "Incorrect (Plausible Distractor). Spending capital unnecessarily burns cash runway and accelerates bankruptcy."
+      },
+      {
+        "id": "c",
+        "text": "Option A must be selected because business textbooks mandate that slow operational speed guarantees superior long-term profits.",
+        "isCorrect": false,
+        "explanation": "Incorrect. In fast-moving markets, excessive slowness can be fatal."
+      },
+      {
+        "id": "d",
+        "text": "Decision matrices are invalid unless evaluated by artificial intelligence neural networks running on quantum supercomputers.",
+        "isCorrect": false,
+        "explanation": "Incorrect. Simple weighted scoring models work exceptionally well for multi-criteria decisions."
+      }
+    ]
+  },
+  {
+    "id": "en_q28",
+    "step": "Step 6: Sunk Cost Fallacy in Go/No-Go Decisions",
+    "scenario": "A university software project has spent $100,000 over 8 months. New testing proves the software is defective and obsolete. The director refuses to cancel it because \"we already spent $100k\".",
+    "question": "What psychological trap is clouding the director’s decision making?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Sunk Cost Fallacy: Continuing a failing initiative solely due to unrecoverable past investments.",
+        "isCorrect": true,
+        "explanation": "Precisely! Sunk costs cannot be recovered. Decisions must be made on future costs versus future benefits."
+      },
+      {
+        "id": "b",
+        "text": "The Endowment Effect: Overvaluing external third-party software products compared to internally hand-coded applications.",
+        "isCorrect": false,
+        "explanation": "Incorrect. The endowment effect is overvaluing what you own; throwing good money after bad is sunk cost."
+      },
+      {
+        "id": "c",
+        "text": "Anchoring Bias: Over-relying on the first piece of numerical information encountered during negotiations with vendors.",
+        "isCorrect": false,
+        "explanation": "Incorrect (Plausible Distractor). While related to numbers, justifying continuation via past spent money is sunk cost."
+      },
+      {
+        "id": "d",
+        "text": "Framing Effect: Drawing conflicting logical deductions from identical data based strictly on whether information is presented positively.",
+        "isCorrect": false,
+        "explanation": "Incorrect. The error is evaluating past unrecoverable spend instead of prospective return."
+      }
+    ]
+  },
+  {
+    "id": "en_q29",
+    "step": "Step 6: Stakeholder Buy-In & Influence Mapping",
+    "scenario": "An operations team plans to replace paper cafeteria receipts with digital QR codes. They secure approval from the CFO but forget to consult cafeteria cashiers who must scan them.",
+    "question": "Why does bypassing front-line operational stakeholders jeopardize the rollout?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Front-line cashiers possess high execution power and can derail adoption through friction and workarounds.",
+        "isCorrect": true,
+        "explanation": "Correct! Stakeholder analysis requires engaging those who execute the process, not just executive sponsors."
+      },
+      {
+        "id": "b",
+        "text": "Executive CFO approval automatically overrides all human psychological behavioral habits across retail worker populations.",
+        "isCorrect": false,
+        "explanation": "Incorrect (Plausible Distractor). Executive decrees without front-line training and buy-in invariably fail during execution."
+      },
+      {
+        "id": "c",
+        "text": "Cashiers must legally hold twenty percent voting equity in the catering enterprise before processing digital optical barcodes.",
+        "isCorrect": false,
+        "explanation": "Incorrect. Front-line consultation is an operational and cultural necessity, not an equity ownership rule."
+      },
+      {
+        "id": "d",
+        "text": "Scanning QR codes requires cashiers to obtain specialized federal telecommunications engineering operator certifications.",
+        "isCorrect": false,
+        "explanation": "Incorrect. Scanning modern QR codes requires basic device training, not engineering licenses."
+      }
+    ]
+  },
+  {
+    "id": "en_q30",
+    "step": "Step 6: Reversible vs. Irreversible Decisions (Type 1 vs Type 2)",
+    "scenario": "Jeff Bezos categorizes decisions into Type 1 (irreversible, \"one-way doors\") and Type 2 (reversible, \"two-way doors\"). A team debates button colors for 4 weeks.",
+    "question": "How should the team treat button color selection under this framework?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Type 1 Decision: Treat it as a permanent corporate commitment requiring exhaustive board of directors oversight.",
+        "isCorrect": false,
+        "explanation": "Incorrect. Button colors are instantly reversible and low-risk."
+      },
+      {
+        "id": "b",
+        "text": "Type 2 Decision: Reversible with low downside; decide rapidly and iterate based on data.",
+        "isCorrect": true,
+        "explanation": "Spot on! Reversible decisions should be made quickly by small teams. Deliberating 4 weeks on button colors is severe analysis paralysis."
+      },
+      {
+        "id": "c",
+        "text": "Type 0 Decision: Outsource button styling to international geopolitical treaty negotiators to ensure neutrality.",
+        "isCorrect": false,
+        "explanation": "Incorrect (Plausible Distractor). Fictional category that humorously illustrates absurd over-engineering."
+      },
+      {
+        "id": "d",
+        "text": "Button color adjustments permanently alter underlying cryptographic blockchain smart contracts and cannot be undone.",
+        "isCorrect": false,
+        "explanation": "Incorrect. CSS UI styling is trivial to modify and redeploy."
+      }
+    ]
+  },
+  {
+    "id": "en_q31",
+    "step": "Step 7: Pilot Testing vs. Big Bang Rollout",
+    "scenario": "A university plans to deploy a new campus-wide grading software for 20,000 students. The vendor urges switching the entire university database over on Monday morning.",
+    "question": "Why should the project manager insist on a Pilot Test in Step 7 instead?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Big bang rollouts are universally recommended by software engineers because they force immediate user compliance without complaints.",
+        "isCorrect": false,
+        "explanation": "Incorrect (Plausible Distractor). \"Big bang\" releases carry catastrophic risk if unforeseen bugs corrupt live data."
+      },
+      {
+        "id": "b",
+        "text": "A pilot tests workflows in a controlled small cohort, isolating bugs before enterprise scaling.",
+        "isCorrect": true,
+        "explanation": "Accurate! Piloting in one department validates technical stability and user readiness while bounding failure risk."
+      },
+      {
+        "id": "c",
+        "text": "Pilot testing eliminates the need for software code documentation and post-launch technical support desks.",
+        "isCorrect": false,
+        "explanation": "Incorrect. Documentation and support remain critical regardless of rollout strategy."
+      },
+      {
+        "id": "d",
+        "text": "Grading software can only be operated legally during leap years under international educational software standards.",
+        "isCorrect": false,
+        "explanation": "Incorrect. Fictional regulation distractor having no basis in educational technology."
+      }
+    ]
+  },
+  {
+    "id": "en_q32",
+    "step": "Step 7: Leading vs. Lagging Indicators",
+    "scenario": "A startup wants to improve customer satisfaction. They measure quarterly Net Promoter Score (NPS) but have no weekly metrics tracking unresolved support tickets.",
+    "question": "In Step 7 monitoring, what is the key difference between quarterly NPS and daily ticket resolution time?",
+    "options": [
+      {
+        "id": "a",
+        "text": "NPS is a lagging indicator of past sentiment; ticket resolution is a leading indicator of emerging churn.",
+        "isCorrect": true,
+        "explanation": "Spot on! Lagging metrics show past outcomes after the damage is done. Leading metrics provide early warnings for proactive intervention."
+      },
+      {
+        "id": "b",
+        "text": "Quarterly NPS scores predict daily software compiler crashes with ninety-eight percent mathematical precision.",
+        "isCorrect": false,
+        "explanation": "Incorrect (Plausible Distractor). NPS reflects broad customer sentiment, not real-time software compiler telemetry."
+      },
+      {
+        "id": "c",
+        "text": "Leading indicators can only be measured once every five years during formal federal industrial economic census cycles.",
+        "isCorrect": false,
+        "explanation": "Incorrect. Leading indicators must be tracked frequently (daily/weekly) to enable timely course correction."
+      },
+      {
+        "id": "d",
+        "text": "Customer satisfaction metrics are obsolete because modern enterprise software products never require customer retention.",
+        "isCorrect": false,
+        "explanation": "Incorrect. Customer retention is the lifeblood of SaaS and recurring enterprise business models."
+      }
+    ]
+  },
+  {
+    "id": "en_q33",
+    "step": "Step 7: Agile Feedback Loops & Retrospectives",
+    "scenario": "After completing a 4-week software milestone, the project team refuses to conduct a Sprint Retrospective because \"the software was shipped and looking back is a waste of time.\"",
+    "question": "What vital problem-solving discipline did the team abandon?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Continuous learning and process refinement loops that prevent recurring systemic bottlenecks.",
+        "isCorrect": true,
+        "explanation": "Correct! Step 7 requires closing the feedback loop. Retrospectives allow teams to institutionalize wins and fix recurring process flaws."
+      },
+      {
+        "id": "b",
+        "text": "Software engineering velocity increases exponentially when developers deliberately avoid evaluating previous code defects.",
+        "isCorrect": false,
+        "explanation": "Incorrect (Plausible Distractor). Ignoring past mistakes guarantees repeating them in upcoming sprints."
+      },
+      {
+        "id": "c",
+        "text": "Retrospectives are purely ceremonial social gatherings that provide zero tangible engineering or operational insights.",
+        "isCorrect": false,
+        "explanation": "Incorrect. Well-facilitated retrospectives surface actionable root-cause process improvements."
+      },
+      {
+        "id": "d",
+        "text": "Sprint retrospectives require mandatory notarized sign-offs from international trade union representatives.",
+        "isCorrect": false,
+        "explanation": "Incorrect. Retrospectives are internal team alignment mechanisms, not legal union filings."
+      }
+    ]
+  },
+  {
+    "id": "en_q34",
+    "step": "Step 7: The PDCA Cycle (Plan-Do-Check-Act)",
+    "scenario": "A university dining hall implements a new tray-return conveyor belt. When students start jamming the belt on day two, staff simply turn the motor off and abandon the project.",
+    "question": "Which phase of Deming’s PDCA cycle did the dining hall leadership fail to execute?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Plan: Drafting preliminary technical CAD engineering blueprints for the conveyor motor electrical wiring.",
+        "isCorrect": false,
+        "explanation": "Incorrect. The machine was already built and installed, so the initial planning was completed."
+      },
+      {
+        "id": "b",
+        "text": "Do: Turning the power switch on and allowing dishes to travel across the motorized rubber belt.",
+        "isCorrect": false,
+        "explanation": "Incorrect. They completed the \"Do\" phase when they initiated live operations on day one."
+      },
+      {
+        "id": "c",
+        "text": "Check & Act: Analyzing the jam root cause and adjusting belt speed or drop-off signage.",
+        "isCorrect": true,
+        "explanation": "Spot on! PDCA requires analyzing failures during the \"Check\" phase and making corrective improvements in \"Act\", rather than giving up."
+      },
+      {
+        "id": "d",
+        "text": "Deming’s PDCA cycle applies exclusively to automotive engine factories in Nagoya and cannot be used in food services.",
+        "isCorrect": false,
+        "explanation": "Incorrect (Plausible Distractor). PDCA is a universal problem-solving framework applicable to any operational process."
+      }
+    ]
+  },
+  {
+    "id": "en_q35",
+    "step": "Step 7: Change Management & The J-Curve",
+    "scenario": "A company implements a modern CRM platform. During the first two weeks, sales productivity temporarily drops by 15% as reps learn the interface. The CEO panics and demands reverting to paper.",
+    "question": "What predictable implementation phenomenon did the CEO fail to understand?",
+    "options": [
+      {
+        "id": "a",
+        "text": "The Change Curve: Productivity temporarily dips during adoption before rising above baseline.",
+        "isCorrect": true,
+        "explanation": "Accurate! The J-Curve of change management shows that new tools initially disrupt muscle memory before delivering superior productivity."
+      },
+      {
+        "id": "b",
+        "text": "Any enterprise digital tool that causes a temporary efficiency dip must be permanently terminated within twenty-four hours.",
+        "isCorrect": false,
+        "explanation": "Incorrect (Plausible Distractor). Knee-jerk abandonment prevents organizations from ever achieving technological modernization."
+      },
+      {
+        "id": "c",
+        "text": "Sales representatives should be replaced with automated telemarketing robots whenever a productivity metric drops by one percent.",
+        "isCorrect": false,
+        "explanation": "Incorrect. Draconian overreaction that destroys institutional knowledge and customer relationships."
+      },
+      {
+        "id": "d",
+        "text": "Modern CRM platforms operate solely on lunar calendar cycles and experience natural quarterly productivity blackouts.",
+        "isCorrect": false,
+        "explanation": "Incorrect. Fictional astrological distractor having zero connection to organizational change management."
+      }
+    ]
+  },
+  {
+    "id": "en_q36",
+    "step": "Step 7: Institutionalizing Solutions & SOPs",
+    "scenario": "An IT team successfully recovers from a massive ransomware incident. Six months later, new hires make the exact same credential mistakes because no incident report or standard procedure was written.",
+    "question": "What essential closing phase of Step 7 (Implementation) was neglected?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Institutionalizing solutions into Standard Operating Procedures (SOPs) and ongoing training programs.",
+        "isCorrect": true,
+        "explanation": "Correct! A problem is not truly solved until the solution is institutionalized into policies, documentation, and training."
+      },
+      {
+        "id": "b",
+        "text": "Failing to execute punitive public disciplinary tribunals broadcast live to all corporate regional offices worldwide.",
+        "isCorrect": false,
+        "explanation": "Incorrect (Plausible Distractor). Blame cultures suppress transparent incident reporting and make future breaches more likely."
+      },
+      {
+        "id": "c",
+        "text": "New hires should be required to pass twenty-four-hour polygraph lie detector examinations prior to receiving company email logins.",
+        "isCorrect": false,
+        "explanation": "Incorrect. Invasive polygraphs do not substitute for clear security procedures and password managers."
+      },
+      {
+        "id": "d",
+        "text": "Cybersecurity incident playbooks become legally invalid after seven calendar days under international internet agreements.",
+        "isCorrect": false,
+        "explanation": "Incorrect. Incident playbooks are durable institutional assets that must be maintained and practiced regularly."
       }
     ]
   }
