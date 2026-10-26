@@ -66,11 +66,17 @@ export function initializeDeck(teamCount: number): {
     hands.push(teamHand);
   }
 
-  // 3. Chuẩn bị các lá Crisis (Số lá Crisis = số đội - 1 hoặc tối đa 10 lá theo bài giảng)
-  const crisisCards: Card[] = CRISIS_CARDS_DATA.slice(0, Math.min(10, teamCount + 2)).map(c => ({
-    ...c,
-    id: `crisis-${cardIdCounter++}`,
-  }));
+  // 3. Chuẩn bị các lá Crisis (Tăng mạnh số lượng lá nổ để tạo áp lực sinh tử liên tục)
+  // Đảm bảo có từ 10 đến 14 lá nổ trong chồng bài rút
+  const crisisCards: Card[] = [];
+  const totalCrisisCount = Math.max(10, teamCount * 2 + 2);
+  for (let i = 0; i < totalCrisisCount; i++) {
+    const template = CRISIS_CARDS_DATA[i % CRISIS_CARDS_DATA.length];
+    crisisCards.push({
+      ...template,
+      id: `crisis-${cardIdCounter++}`,
+    });
+  }
 
   // 4. Gộp toàn bộ bài còn lại (Crisis + Backup Plan thừa + Kỹ năng còn lại) làm Chồng bài rút chung (Draw Pile)
   const drawPile = shuffleCards([

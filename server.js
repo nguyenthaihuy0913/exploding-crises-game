@@ -144,6 +144,19 @@ io.on('connection', (socket) => {
     socket.emit('room:updated', roomState);
   });
 
+  // 1b. Get room state (teams, active connections) before joining
+  socket.on('room:get_state', ({ roomCode }, callback) => {
+    const code = (roomCode || '').toUpperCase().trim();
+    const room = rooms.get(code);
+    if (!room) {
+      if (callback) callback({ success: false, message: 'Phòng không tồn tại!' });
+      return;
+    }
+    // Join socket channel to receive real-time room updates
+    socket.join(code);
+    if (callback) callback({ success: true, roomState: room });
+  });
+
   // 2. Team joins a room
   socket.on('team:join_room', ({ roomCode, teamId }, callback) => {
     const code = (roomCode || '').toUpperCase().trim();
@@ -157,6 +170,17 @@ io.on('connection', (socket) => {
     const targetTeam = room.teams.find((t) => t.id === teamId);
     if (!targetTeam) {
       if (callback) callback({ success: false, message: 'Đội không tồn tại trong phòng này!' });
+      return;
+    }
+
+    // 1 SLOT = 1 LAPTOP: Đội đã có máy khác chọn thì không ai khác được chọn nữa
+    if (targetTeam.connected && targetTeam.socketId && targetTeam.socketId !== socket.id) {
+      if (callback) {
+        callback({
+          success: false,
+          message: `Đội "${targetTeam.name}" đã có laptop kết nối rồi! Mỗi bàn 4-5 bạn chỉ dùng 1 laptop đại diện, vui lòng chọn đội khác.`,
+        });
+      }
       return;
     }
 
@@ -208,7 +232,7 @@ io.on('connection', (socket) => {
       deck.hands.forEach((hand, idx) => {
         if (room.teams[idx]) {
           room.teams[idx].hand = hand;
-          room.teams[idx].hp = 3;
+          room.teams[idx].hp = 1;
           room.teams[idx].isAlive = true;
         }
       });

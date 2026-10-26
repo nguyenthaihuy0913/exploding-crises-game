@@ -141,6 +141,51 @@ export const MainMenu: React.FC<MainMenuProps> = ({
 
       </div>
 
+      {/* Classroom Rules & Quick Overview Banner */}
+      <div className="w-full bg-white border border-slate-200/90 rounded-2xl p-5 sm:p-6 shadow-2xs mb-8">
+        <div className="flex items-center justify-between border-b border-slate-100 pb-3 mb-4">
+          <div className="flex items-center space-x-2">
+            <ShieldAlert className="w-4 h-4 text-rose-600" />
+            <h3 className="font-extrabold text-sm text-slate-900 uppercase tracking-wide">
+              QUY TẮC PHÒNG HỌC & LUẬT CHƠI CỐT LÕI
+            </h3>
+          </div>
+          <button
+            onClick={() => {
+              sound.playClick();
+              onOpenRules();
+            }}
+            className="text-xs font-bold text-sky-700 hover:text-sky-800 flex items-center space-x-1 hover:underline cursor-pointer"
+          >
+            <BookOpen className="w-3.5 h-3.5" />
+            <span>Xem chi tiết luật</span>
+          </button>
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 text-xs">
+          <div className="p-3 rounded-xl bg-slate-50 border border-slate-200/80">
+            <strong className="text-slate-900 block font-bold mb-1">💻 1 Laptop / Bàn (4–5 SV)</strong>
+            <p className="text-slate-600 leading-relaxed">
+              Mỗi bàn chỉ dùng 1 máy tính đại diện. Khi 1 máy chọn đội, slot đó sẽ tự động <strong>khóa lại (🔒)</strong> trên các máy khác để tránh trùng lặp.
+            </p>
+          </div>
+
+          <div className="p-3 rounded-xl bg-rose-50/70 border border-rose-200/80">
+            <strong className="text-rose-900 block font-bold mb-1">❤️ 1 Mạng Duy Nhất (1 HP)</strong>
+            <p className="text-slate-600 leading-relaxed">
+              Mỗi đội chỉ có 1 mạng sống. Rút trúng Crisis mà không có <strong>Backup Plan</strong> hoặc trả lời sai thử thách 7 bước là <strong>BỊ LOẠI NGAY</strong>!
+            </p>
+          </div>
+
+          <div className="p-3 rounded-xl bg-amber-50/70 border border-amber-200/80">
+            <strong className="text-amber-900 block font-bold mb-1">💣 Mật Độ Nổ Cao (10–14 Lá)</strong>
+            <p className="text-slate-600 leading-relaxed">
+              Chồng bài rút chứa từ 10–14 lá Khủng hoảng rình rập. Hãy dùng lá <em>Soi bài, Xáo bài, Skip</em> hoặc <em>Cướp bài</em> để bảo vệ mạng sống!
+            </p>
+          </div>
+        </div>
+      </div>
+
       {/* Quick Settings & Rules Bar */}
       <div className="flex flex-wrap items-center justify-center gap-3">
         <button

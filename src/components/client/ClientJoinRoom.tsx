@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react';
-import { Laptop, ArrowRight, CheckCircle2, Clock, ShieldCheck, AlertCircle } from 'lucide-react';
+import { Laptop, ArrowRight, CheckCircle2, Clock, ShieldCheck, AlertCircle, Users, Lock } from 'lucide-react';
 import { Team, RoomState } from '../../types/game';
 import { TeamIcon } from '../common/TeamIcon';
 import { sound } from '../../utils/sound';
+import { socket } from '../../utils/socket';
 
 interface ClientJoinRoomProps {
   initialRoomCode?: string;
@@ -22,6 +23,7 @@ export const ClientJoinRoom: React.FC<ClientJoinRoomProps> = ({
   const [inputCode, setInputCode] = useState<string>(initialRoomCode);
   const [chosenTeamId, setChosenTeamId] = useState<string | null>(null);
   const [errorMsg, setErrorMsg] = useState<string | null>(null);
+  const [liveRoom, setLiveRoom] = useState<RoomState | null>(roomState);
 
   useEffect(() => {
     if (initialRoomCode) {
@@ -29,9 +31,44 @@ export const ClientJoinRoom: React.FC<ClientJoinRoomProps> = ({
     }
   }, [initialRoomCode]);
 
-  const handleSelectTeam = (teamId: string) => {
+  useEffect(() => {
+    if (roomState) setLiveRoom(roomState);
+  }, [roomState]);
+
+  // Query live room state when 4-letter code is entered or changes
+  useEffect(() => {
+    const cleanCode = inputCode.trim().toUpperCase();
+    if (cleanCode.length === 4) {
+      socket.emit('room:get_state', { roomCode: cleanCode }, (res: { success: boolean; roomState?: RoomState }) => {
+        if (res?.success && res.roomState) {
+          setLiveRoom(res.roomState);
+          setErrorMsg(null);
+        }
+      });
+    }
+  }, [inputCode]);
+
+  // Listen to real-time room updates (so slots lock live as other tables join)
+  useEffect(() => {
+    const handleRoomUpdated = (updated: RoomState) => {
+      if (updated.code === inputCode.trim().toUpperCase()) {
+        setLiveRoom(updated);
+      }
+    };
+    socket.on('room:updated', handleRoomUpdated);
+    return () => {
+      socket.off('room:updated', handleRoomUpdated);
+    };
+  }, [inputCode]);
+
+  const handleSelectTeam = (team: Team) => {
+    if (team.connected) {
+      sound.playCrisisAlarm();
+      setErrorMsg(`Đội "${team.name}" đã có bàn khác kết nối! Mỗi bàn 4-5 bạn chỉ dùng 1 laptop đại diện.`);
+      return;
+    }
     sound.playClick();
-    setChosenTeamId(teamId);
+    setChosenTeamId(team.id);
     setErrorMsg(null);
   };
 
@@ -129,33 +166,54 @@ export const ClientJoinRoom: React.FC<ClientJoinRoomProps> = ({
           />
         </div>
 
+        {/* Table Rule Notice */}
+        <div className="mb-5 p-3.5 rounded-xl bg-amber-50/90 border border-amber-200/90 flex items-start space-x-2.5 text-xs text-amber-900 leading-relaxed shadow-2xs">
+          <Users className="w-4 h-4 text-amber-700 shrink-0 mt-0.5" />
+          <span>
+            <strong>Quy tắc lớp học:</strong> Mỗi bàn (4–5 sinh viên) chỉ sử dụng <strong>1 laptop duy nhất</strong> đại diện cho nhóm. Khi một bàn đã chọn đội, slot đó sẽ <strong>tự động khóa lại (🔒)</strong> trên các máy khác để tránh trùng lặp!
+          </span>
+        </div>
+
         {/* Team Selection Slots */}
         <div className="mb-6">
           <label className="block text-xs font-bold uppercase tracking-wider text-slate-600 mb-2">
             Chọn Đội Của Nhóm Mình:
           </label>
 
-          {roomState?.teams ? (
+          {liveRoom?.teams ? (
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
-              {roomState.teams.map((team) => {
+              {liveRoom.teams.map((team) => {
                 const isSelected = chosenTeamId === team.id;
+                const isTaken = Boolean(team.connected);
                 return (
                   <button
                     key={team.id}
-                    onClick={() => handleSelectTeam(team.id)}
-                    className={`p-3 rounded-xl border text-left flex items-center space-x-3 transition-all cursor-pointer ${
-                      isSelected
-                        ? 'bg-emerald-50 border-emerald-500 ring-2 ring-emerald-100 text-emerald-950 shadow-2xs'
-                        : 'bg-white hover:bg-slate-50 border-slate-200 text-slate-800'
+                    type="button"
+                    disabled={isTaken}
+                    onClick={() => handleSelectTeam(team)}
+                    className={`p-3 rounded-xl border text-left flex items-center space-x-3 transition-all ${
+                      isTaken
+                        ? 'bg-slate-100/80 border-slate-200 text-slate-400 opacity-60 cursor-not-allowed select-none'
+                        : isSelected
+                        ? 'bg-emerald-50 border-emerald-500 ring-2 ring-emerald-100 text-emerald-950 shadow-2xs cursor-pointer'
+                        : 'bg-white hover:bg-slate-50 border-slate-200 text-slate-800 cursor-pointer'
                     }`}
                   >
                     <div className="w-8 h-8 rounded-lg bg-slate-50 border border-slate-200 flex items-center justify-center shrink-0">
-                      <TeamIcon name={team.avatar} className="w-4 h-4 text-slate-700" />
+                      {isTaken ? (
+                        <Lock className="w-4 h-4 text-slate-400" />
+                      ) : (
+                        <TeamIcon name={team.avatar} className="w-4 h-4 text-slate-700" />
+                      )}
                     </div>
                     <div className="flex-1 truncate">
-                      <div className="text-xs font-bold truncate">{team.name}</div>
-                      <span className="text-[10px] text-slate-400">
-                        {team.connected ? '(Đang có máy kết nối)' : 'Sẵn sàng'}
+                      <div className={`text-xs font-bold truncate ${isTaken ? 'line-through text-slate-400' : ''}`}>
+                        {team.name}
+                      </div>
+                      <span className={`text-[10px] font-semibold ${
+                        isTaken ? 'text-rose-600 font-bold' : isSelected ? 'text-emerald-700 font-bold' : 'text-slate-500'
+                      }`}>
+                        {isTaken ? '🔒 Đã có bàn chọn' : isSelected ? '✓ Đang chọn đội này' : '🟢 Đang trống (Bấm chọn)'}
                       </span>
                     </div>
                   </button>
@@ -166,17 +224,18 @@ export const ClientJoinRoom: React.FC<ClientJoinRoomProps> = ({
             /* Fallback generic 5 teams selection if roomState not fetched yet */
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
               {[
-                { id: 'team-1', name: 'Đội Tư Duy Phân Tích', icon: 'compass' },
-                { id: 'team-2', name: 'Đội Sáng Tạo Đột Phá', icon: 'brain' },
-                { id: 'team-3', name: 'Đội Phản Biện Sắc Bén', icon: 'target' },
-                { id: 'team-4', name: 'Đội Đàm Phán Stakeholder', icon: 'users' },
-                { id: 'team-5', name: 'Đội Phương Án Dự Phòng', icon: 'shield' },
+                { id: 'team-1', name: 'Đội Tư Duy Phân Tích', avatar: 'compass' },
+                { id: 'team-2', name: 'Đội Sáng Tạo Đột Phá', avatar: 'brain' },
+                { id: 'team-3', name: 'Đội Phản Biện Sắc Bén', avatar: 'target' },
+                { id: 'team-4', name: 'Đội Đàm Phán Stakeholder', avatar: 'users' },
+                { id: 'team-5', name: 'Đội Phương Án Dự Phòng', avatar: 'shield' },
               ].map((team) => {
                 const isSelected = chosenTeamId === team.id;
                 return (
                   <button
                     key={team.id}
-                    onClick={() => handleSelectTeam(team.id)}
+                    type="button"
+                    onClick={() => handleSelectTeam(team as Team)}
                     className={`p-3 rounded-xl border text-left flex items-center space-x-3 transition-all cursor-pointer ${
                       isSelected
                         ? 'bg-emerald-50 border-emerald-500 ring-2 ring-emerald-100 text-emerald-950 shadow-2xs'
@@ -184,7 +243,7 @@ export const ClientJoinRoom: React.FC<ClientJoinRoomProps> = ({
                     }`}
                   >
                     <div className="w-8 h-8 rounded-lg bg-slate-50 border border-slate-200 flex items-center justify-center shrink-0">
-                      <TeamIcon name={team.icon} className="w-4 h-4 text-slate-700" />
+                      <TeamIcon name={team.avatar} className="w-4 h-4 text-slate-700" />
                     </div>
                     <div className="flex-1 truncate">
                       <div className="text-xs font-bold truncate">{team.name}</div>
