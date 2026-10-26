@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { QRCodeSVG } from 'qrcode.react';
-import { Play, Copy, Check, Tv, Users, Laptop, Wifi } from 'lucide-react';
+import { Play, Copy, Check, Tv, Users, Laptop, Wifi, BookOpen } from 'lucide-react';
 import { Team } from '../../types/game';
 import { TeamIcon } from '../common/TeamIcon';
 import { sound } from '../../utils/sound';
@@ -11,6 +11,7 @@ interface HostWaitingRoomProps {
   teams: Team[];
   onStartGame: () => void;
   onBackToMenu: () => void;
+  onOpenRules?: () => void;
 }
 
 export const HostWaitingRoom: React.FC<HostWaitingRoomProps> = ({
@@ -19,6 +20,7 @@ export const HostWaitingRoom: React.FC<HostWaitingRoomProps> = ({
   teams,
   onStartGame,
   onBackToMenu,
+  onOpenRules,
 }) => {
   const [copied, setCopied] = useState<boolean>(false);
 
@@ -57,9 +59,22 @@ export const HostWaitingRoom: React.FC<HostWaitingRoomProps> = ({
           <span>🔴 Đóng Phòng & Quay Lại Menu</span>
         </button>
 
-        <div className="flex items-center space-x-2 text-xs font-medium text-slate-500 bg-white border border-slate-200 px-3 py-1 rounded-full shadow-2xs">
-          <Wifi className="w-3.5 h-3.5 text-emerald-600 animate-pulse" />
-          <span>Server Đồng Bộ Đang Hoạt Động</span>
+        <div className="flex items-center space-x-3">
+          <button
+            onClick={() => {
+              sound.playClick();
+              onOpenRules?.();
+            }}
+            className="text-xs font-semibold text-sky-600 hover:text-sky-800 flex items-center space-x-1.5 py-1.5 px-3 rounded-lg hover:bg-sky-50 transition-all cursor-pointer border border-sky-200 bg-white shadow-2xs"
+          >
+            <BookOpen className="w-3.5 h-3.5" />
+            <span>Xem Luật Chơi & Chiến Thuật</span>
+          </button>
+
+          <div className="flex items-center space-x-2 text-xs font-medium text-slate-500 bg-white border border-slate-200 px-3 py-1 rounded-full shadow-2xs">
+            <Wifi className="w-3.5 h-3.5 text-emerald-600 animate-pulse" />
+            <span>Server Đồng Bộ Đang Hoạt Động</span>
+          </div>
         </div>
       </div>
 

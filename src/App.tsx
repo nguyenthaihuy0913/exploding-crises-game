@@ -671,6 +671,7 @@ export function App() {
             teams={roomState.teams}
             onStartGame={handleHostStartGame}
             onBackToMenu={handleHostCloseRoom}
+            onOpenRules={() => setShowRules(true)}
           />
         )}
 
@@ -699,6 +700,7 @@ export function App() {
               setAppMode('menu');
               setMyTeamId(null);
             }}
+            onOpenRules={() => setShowRules(true)}
             roomState={roomState}
             selectedTeam={myTeam}
           />

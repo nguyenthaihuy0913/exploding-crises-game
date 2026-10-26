@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Laptop, ArrowRight, CheckCircle2, Clock, ShieldCheck, AlertCircle, Users, Lock } from 'lucide-react';
+import { Laptop, ArrowRight, CheckCircle2, Clock, ShieldCheck, AlertCircle, Users, Lock, BookOpen } from 'lucide-react';
 import { Team, RoomState } from '../../types/game';
 import { TeamIcon } from '../common/TeamIcon';
 import { sound } from '../../utils/sound';
@@ -9,6 +9,7 @@ interface ClientJoinRoomProps {
   initialRoomCode?: string;
   onJoinRoom: (roomCode: string, teamId: string) => void;
   onBackToMenu: () => void;
+  onOpenRules?: () => void;
   roomState: RoomState | null;
   selectedTeam: Team | null;
 }
@@ -17,6 +18,7 @@ export const ClientJoinRoom: React.FC<ClientJoinRoomProps> = ({
   initialRoomCode = '',
   onJoinRoom,
   onBackToMenu,
+  onOpenRules,
   roomState,
   selectedTeam,
 }) => {
@@ -89,8 +91,8 @@ export const ClientJoinRoom: React.FC<ClientJoinRoomProps> = ({
   // If already joined and waiting for Host to start
   if (selectedTeam && roomState?.phase === 'lobby') {
     return (
-      <div className="w-full max-w-md mx-auto px-4 py-12 text-center animate-in fade-in">
-        <div className="bg-white border border-slate-200 rounded-3xl p-8 shadow-xs">
+      <div className="w-full max-w-md mx-auto px-4 py-8 sm:py-12 text-center animate-in fade-in">
+        <div className="bg-white border border-slate-200 rounded-3xl p-6 sm:p-8 shadow-xs">
           
           <div className="w-16 h-16 rounded-2xl bg-emerald-50 border border-emerald-200 text-emerald-600 mx-auto flex items-center justify-center mb-4 shadow-2xs">
             <CheckCircle2 className="w-8 h-8" />
@@ -107,18 +109,34 @@ export const ClientJoinRoom: React.FC<ClientJoinRoomProps> = ({
             Phòng: <strong>{roomState.code}</strong> • Laptop Nhóm
           </p>
 
-          <div className="p-4 rounded-2xl bg-slate-50 border border-slate-200 flex items-center justify-center space-x-2 text-xs text-slate-600 mb-6">
+          <div className="p-4 rounded-2xl bg-slate-50 border border-slate-200 flex items-center justify-center space-x-2 text-xs text-slate-600 mb-5">
             <Clock className="w-4 h-4 text-sky-600 animate-spin" />
             <span>Đang chờ Host bắt đầu ván đấu trên máy chiếu...</span>
           </div>
 
-          <div className="p-4 rounded-xl bg-sky-50/70 border border-sky-100 text-left text-xs text-sky-900 leading-relaxed">
+          <div className="p-4 rounded-xl bg-sky-50/70 border border-sky-100 text-left text-xs text-sky-900 leading-relaxed mb-6">
             <div className="flex items-center space-x-1.5 font-bold mb-1">
               <ShieldCheck className="w-4 h-4 text-sky-700" />
               <span>Gợi ý chiến thuật SSA101:</span>
             </div>
-            <span>Các bạn trong nhóm hãy chụm lại bàn bạc. Mỗi đội sẽ nhận 1 lá <strong>Backup Plan</strong>, hãy giữ thật chặt để phòng thân!</span>
+            <span>Các bạn trong nhóm hãy chụm lại bàn bạc. Mỗi đội chỉ có <strong>1 Mạng duy nhất</strong>! Hãy tranh thủ đọc nhanh luật chơi và tác dụng các thẻ bài bên dưới.</span>
           </div>
+
+          {/* Action button to view rules while waiting */}
+          <button
+            onClick={() => {
+              sound.playClick();
+              onOpenRules?.();
+            }}
+            className="w-full py-3.5 px-5 rounded-2xl font-bold text-sm bg-gradient-to-r from-sky-600 via-indigo-600 to-sky-700 hover:from-sky-500 hover:to-indigo-500 text-white shadow-md shadow-sky-600/25 flex items-center justify-center space-x-2.5 cursor-pointer transition-all active:scale-[0.98]"
+          >
+            <BookOpen className="w-4 h-4" />
+            <span>Xem Luật Chơi & Chiến Thuật (Khuyên Đọc)</span>
+          </button>
+
+          <p className="text-[11px] text-slate-400 mt-3">
+            💡 Tranh thủ lúc chờ giảng viên bấm bắt đầu, hãy đọc nhanh luật chơi và chức năng các lá bài nhé!
+          </p>
 
         </div>
       </div>
@@ -129,15 +147,28 @@ export const ClientJoinRoom: React.FC<ClientJoinRoomProps> = ({
     <div className="w-full max-w-lg mx-auto px-4 py-8 lg:py-12">
       
       {/* Top Back Navigation */}
-      <button
-        onClick={() => {
-          sound.playClick();
-          onBackToMenu();
-        }}
-        className="text-xs font-semibold text-slate-500 hover:text-slate-800 flex items-center space-x-1.5 py-1.5 px-3 rounded-lg hover:bg-slate-100 transition-all mb-6 cursor-pointer"
-      >
-        <span>← Quay lại Menu</span>
-      </button>
+      <div className="flex items-center justify-between mb-6">
+        <button
+          onClick={() => {
+            sound.playClick();
+            onBackToMenu();
+          }}
+          className="text-xs font-semibold text-slate-500 hover:text-slate-800 flex items-center space-x-1.5 py-1.5 px-3 rounded-lg hover:bg-slate-100 transition-all cursor-pointer"
+        >
+          <span>← Quay lại Menu</span>
+        </button>
+
+        <button
+          onClick={() => {
+            sound.playClick();
+            onOpenRules?.();
+          }}
+          className="text-xs font-semibold text-sky-600 hover:text-sky-800 flex items-center space-x-1.5 py-1.5 px-3 rounded-lg hover:bg-sky-50 transition-all cursor-pointer border border-sky-200"
+        >
+          <BookOpen className="w-3.5 h-3.5" />
+          <span>Xem Luật Chơi</span>
+        </button>
+      </div>
 
       <div className="bg-white border border-slate-200 rounded-2xl p-6 sm:p-8 shadow-xs">
         
