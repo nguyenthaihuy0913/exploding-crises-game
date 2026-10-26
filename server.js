@@ -95,7 +95,7 @@ io.on('connection', (socket) => {
         name: teamNames[i] || defaultNames[i] || `Đội ${i + 1}`,
         avatar: teamIcons[i] || defaultIcons[i] || 'users',
         color: defaultColors[i] || 'sky',
-        hp: 3,
+        hp: 1,
         hand: [],
         isAlive: true,
         hasShield: false,

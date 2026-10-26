@@ -32,7 +32,7 @@
 ### 🎴 2. Bộ Bài 50 Lá Gắn Liền Thực Tế SSA101
 | Nhóm Bài | Số Lượng | Ý Nghĩa Kỹ Năng | Tác Dụng Trong Game |
 | :--- | :---: | :--- | :--- |
-| **Exploding Crisis** | 10 lá | Tình huống rủi ro bất ngờ | Bốc trúng sẽ kích hoạt đếm ngược khẩn cấp! Mất 1 HP nếu không có giải pháp phòng ngừa. |
+| **Exploding Crisis** | 10 lá | Tình huống rủi ro bất ngờ | Bốc trúng sẽ kích hoạt đếm ngược khẩn cấp! Nổ tung và bị loại ngay lập tức (1 mạng duy nhất) nếu không có phương án giải cứu. |
 | **Backup Plan** | 8 lá | Kế hoạch dự phòng (Plan B) | Vô hiệu hóa ngay lập tức lá Crisis và giấu kín lại lá Crisis đó vào chồng bài để bẫy đối thủ. |
 | **Resilience Shield** | 4 lá | Khả năng phục hồi & Kiểm soát | Kích hoạt khiên bảo vệ, miễn nhiễm hoàn toàn đòn cướp bài tiếp theo. |
 | **Analytical Scan** | 4 lá | Analytical Thinking (Phân tích) | Soi trước 3 lá bài đầu tiên của chồng rút để nhận diện rủi ro trước khi ra quyết định. |

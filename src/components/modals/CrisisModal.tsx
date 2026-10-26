@@ -107,18 +107,18 @@ export const CrisisModal: React.FC<CrisisModalProps> = ({
           <div className="text-xs text-slate-600 mb-6 flex items-center justify-between bg-slate-50 p-3 rounded-lg border border-slate-200">
             <span>Đội đối mặt: <strong className="text-slate-900">{currentTeam.name}</strong></span>
             <div className="flex items-center space-x-1">
-              <span>Máu hiện tại:</span>
-              <div className="flex items-center space-x-0.5 ml-1">
-                {[1, 2, 3].map((heartIdx) => (
-                  <Heart
-                    key={heartIdx}
-                    className={`w-3.5 h-3.5 ${
-                      heartIdx <= currentTeam.hp
-                        ? 'fill-rose-500 text-rose-500'
-                        : 'fill-slate-100 text-slate-300'
-                    }`}
-                  />
-                ))}
+              <span>Trạng thái:</span>
+              <div className="flex items-center space-x-1.5 ml-1">
+                <Heart
+                  className={`w-3.5 h-3.5 ${
+                    currentTeam.hp > 0
+                      ? 'fill-rose-500 text-rose-500 animate-pulse'
+                      : 'fill-slate-100 text-slate-300'
+                  }`}
+                />
+                <span className="font-bold text-rose-600">
+                  {currentTeam.hp > 0 ? '1 Mạng (Sẽ bị loại nếu thất bại!)' : 'Đã bị loại'}
+                </span>
               </div>
             </div>
           </div>
@@ -143,7 +143,7 @@ export const CrisisModal: React.FC<CrisisModalProps> = ({
                     onClick={onFailedDefuse}
                     className="w-full py-3.5 px-4 rounded-xl font-bold text-sm text-white bg-rose-600 hover:bg-rose-700 transition-all flex items-center justify-center space-x-2 shadow-sm cursor-pointer"
                   >
-                    <span>VÀO THỬ THÁCH 7 BƯỚC ĐỂ CỨU NGUY (-1 HP)</span>
+                    <span>VÀO THỬ THÁCH 7 BƯỚC ĐỂ CỨU MẠNG (SAI SẼ BỊ LOẠI!)</span>
                   </button>
                 </div>
               )}

@@ -59,7 +59,7 @@ export const RulesModal: React.FC<RulesModalProps> = ({ onClose }) => {
                 <div>
                   <strong className="text-rose-800">Exploding Crisis (Khủng hoảng rủi ro):</strong>
                   <p className="text-xs text-slate-600 mt-0.5">
-                    Mô phỏng các sự cố bất ngờ ngoài dự kiến (Sự cố cafe, Apollo 13, đình công, xe hỏng...). Rút trúng lá này mà không có Backup Plan sẽ bị mất 1 HP.
+                    Mô phỏng các sự cố bất ngờ ngoài dự kiến (Sự cố cafe, Apollo 13, đình công, xe hỏng...). Mỗi đội chỉ sở hữu 1 mạng duy nhất! Rút trúng lá này mà không có Backup Plan sẽ phải giải cứu bằng câu hỏi tình huống 7 bước, nếu sai sẽ bị nổ tung và loại khỏi ván đấu ngay lập tức.
                   </p>
                 </div>
               </div>

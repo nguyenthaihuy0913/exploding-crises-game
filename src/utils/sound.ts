@@ -84,6 +84,31 @@ class SoundEngine {
     });
   }
 
+  // Tiếng chuông báo đến lượt hành động (Bright two-tone chime: E5 -> A5)
+  playTurnAlert() {
+    if (!this.enabled) return;
+    this.init();
+    if (!this.ctx) return;
+
+    const notes = [659.25, 880.00]; // E5, A5
+    notes.forEach((freq, idx) => {
+      const osc = this.ctx!.createOscillator();
+      const gain = this.ctx!.createGain();
+
+      osc.type = 'sine';
+      osc.frequency.setValueAtTime(freq, this.ctx!.currentTime + idx * 0.12);
+
+      gain.gain.setValueAtTime(0.12, this.ctx!.currentTime + idx * 0.12);
+      gain.gain.exponentialRampToValueAtTime(0.001, this.ctx!.currentTime + idx * 0.12 + 0.35);
+
+      osc.connect(gain);
+      gain.connect(this.ctx!.destination);
+
+      osc.start(this.ctx!.currentTime + idx * 0.12);
+      osc.stop(this.ctx!.currentTime + idx * 0.12 + 0.35);
+    });
+  }
+
   // Tiếng cảnh báo Crisis (Êm dịu nhưng báo động rõ ràng)
   playCrisisAlarm() {
     if (!this.enabled) return;

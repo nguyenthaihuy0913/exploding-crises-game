@@ -27,7 +27,7 @@ export interface Team {
   name: string;
   avatar: string;
   color: string;
-  hp: number; // 0 - 3
+  hp: number; // 0 - 1 (1 mạng duy nhất)
   hand: Card[];
   isAlive: boolean;
   hasShield: boolean;

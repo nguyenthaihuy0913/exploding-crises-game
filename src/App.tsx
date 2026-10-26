@@ -299,7 +299,7 @@ export function App() {
       name,
       avatar: TEAM_AVATARS[idx],
       color: TEAM_COLORS[idx],
-      hp: 3,
+      hp: 1,
       hand: hands[idx] || [],
       isAlive: true,
       hasShield: false,

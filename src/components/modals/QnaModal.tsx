@@ -14,9 +14,19 @@ export const QnaModal: React.FC<QnaModalProps> = ({
   qnaItem,
   onComplete,
 }) => {
-  const [timeLeft, setTimeLeft] = useState<number>(15);
+  const [timeLeft, setTimeLeft] = useState<number>(20);
   const [selectedOptionId, setSelectedOptionId] = useState<string | null>(null);
   const [isSubmitted, setIsSubmitted] = useState<boolean>(false);
+
+  // Shuffle options so correct answer is NEVER in a fixed predictable slot
+  const shuffledOptions = React.useMemo(() => {
+    const list = [...qnaItem.options];
+    for (let i = list.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [list[i], list[j]] = [list[j], list[i]];
+    }
+    return list;
+  }, [qnaItem.id]);
 
   useEffect(() => {
     if (isSubmitted) return;
@@ -49,6 +59,7 @@ export const QnaModal: React.FC<QnaModalProps> = ({
   };
 
   const chosenOption = qnaItem.options.find(o => o.id === selectedOptionId);
+  const correctOption = qnaItem.options.find(o => o.isCorrect);
   const isCorrect = chosenOption ? chosenOption.isCorrect : false;
 
   return (
@@ -87,7 +98,7 @@ export const QnaModal: React.FC<QnaModalProps> = ({
           <div className="w-full bg-slate-100 h-1">
             <div 
               className="bg-amber-500 h-full transition-all duration-1000 ease-linear"
-              style={{ width: `${(timeLeft / 15) * 100}%` }}
+              style={{ width: `${(timeLeft / 20) * 100}%` }}
             />
           </div>
         )}
@@ -98,25 +109,25 @@ export const QnaModal: React.FC<QnaModalProps> = ({
           <div className="flex items-center justify-between text-xs text-slate-600 mb-3 bg-slate-50 px-3 py-2 rounded-lg border border-slate-200">
             <span>Đội đối mặt: <strong className="text-slate-900">{currentTeam.name}</strong></span>
             <div className="flex items-center space-x-1">
-              <span>Máu:</span>
-              <div className="flex items-center space-x-0.5 ml-1">
-                {[1, 2, 3].map((heartIdx) => (
-                  <Heart
-                    key={heartIdx}
-                    className={`w-3.5 h-3.5 ${
-                      heartIdx <= currentTeam.hp
-                        ? 'fill-rose-500 text-rose-500'
-                        : 'fill-slate-100 text-slate-300'
-                    }`}
-                  />
-                ))}
+              <span>Trạng thái:</span>
+              <div className="flex items-center space-x-1.5 ml-1">
+                <Heart
+                  className={`w-3.5 h-3.5 ${
+                    currentTeam.hp > 0
+                      ? 'fill-rose-500 text-rose-500 animate-pulse'
+                      : 'fill-slate-100 text-slate-300'
+                  }`}
+                />
+                <span className="font-bold text-rose-600">
+                  {currentTeam.hp > 0 ? '1 Mạng duy nhất' : '0 Mạng'}
+                </span>
               </div>
             </div>
           </div>
 
           {/* Scenario */}
           <div className="bg-slate-50 border border-slate-200 rounded-xl p-3.5 mb-4 text-xs text-slate-700 leading-relaxed">
-            <strong className="text-slate-900">Tình huống:</strong> {qnaItem.scenario}
+            <strong className="text-slate-900">Tình huống thực tế:</strong> {qnaItem.scenario}
           </div>
 
           {/* Question */}
@@ -124,9 +135,10 @@ export const QnaModal: React.FC<QnaModalProps> = ({
             {qnaItem.question}
           </h3>
 
-          {/* Options */}
+          {/* Shuffled Options with dynamic letters */}
           <div className="space-y-2.5 mb-6">
-            {qnaItem.options.map((opt) => {
+            {shuffledOptions.map((opt, idx) => {
+              const letter = String.fromCharCode(65 + idx);
               const isSelected = selectedOptionId === opt.id;
               let btnStyle = 'bg-white hover:bg-slate-50 border-slate-200 text-slate-700';
 
@@ -147,7 +159,7 @@ export const QnaModal: React.FC<QnaModalProps> = ({
                   onClick={() => handleSubmit(opt.id)}
                   className={`w-full text-left p-3.5 rounded-xl border text-xs sm:text-sm transition-all flex items-start space-x-3 cursor-pointer ${btnStyle}`}
                 >
-                  <span className="font-mono text-slate-500 font-bold">{opt.id.toUpperCase()}.</span>
+                  <span className="font-mono text-slate-600 font-bold">{letter}.</span>
                   <span className="flex-1 leading-relaxed">{opt.text}</span>
                   {isSubmitted && opt.isCorrect && (
                     <CheckCircle className="w-4 h-4 text-emerald-600 shrink-0 mt-0.5" />
@@ -168,10 +180,21 @@ export const QnaModal: React.FC<QnaModalProps> = ({
                   ? 'bg-emerald-50 border-emerald-200 text-emerald-900' 
                   : 'bg-rose-50 border-rose-200 text-rose-900'
               }`}>
-                <div className="font-bold text-sm mb-1">
-                  {isCorrect ? '🎉 Trả lời Chính Xác! Đội bảo toàn được 1 HP!' : '❌ Chưa chính xác! Đội bị trừ 1 HP.'}
+                <div className="font-bold text-sm mb-1.5 flex items-center space-x-2">
+                  <span>{isCorrect ? '🎉 Trả lời Chính Xác!' : '💥 Chưa chính xác!'}</span>
+                  <span className="text-xs font-normal opacity-90">
+                    {isCorrect ? '(Bảo toàn thành công 1 Mạng sống)' : '(Mất mạng duy nhất & bị loại khỏi ván đấu)'}
+                  </span>
                 </div>
-                <p className="text-slate-700">{chosenOption?.explanation || 'Hết thời gian trả lời!'}</p>
+                <p className="text-slate-800 leading-relaxed">
+                  {chosenOption ? chosenOption.explanation : 'Hết thời gian trả lời! Bạn đã không kịp đưa ra quyết định.'}
+                </p>
+                {!isCorrect && correctOption && (
+                  <div className="mt-2.5 pt-2 border-t border-rose-200/60 text-slate-700">
+                    <strong className="text-rose-800">Phương án tối ưu:</strong> {correctOption.text}
+                    <div className="text-[11px] text-slate-600 mt-1">{correctOption.explanation}</div>
+                  </div>
+                )}
               </div>
 
               <button

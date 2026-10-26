@@ -35,7 +35,22 @@ export const TeamGameBoard: React.FC<TeamGameBoardProps> = ({
   const [selectedCardId, setSelectedCardId] = useState<string | null>(null);
   const [tabSwitches, setTabSwitches] = useState<number>(myTeam.tabSwitches || 0);
   const [showCheatWarning, setShowCheatWarning] = useState<boolean>(false);
+  const [showTurnAlert, setShowTurnAlert] = useState<boolean>(false);
   const lastSwitchRef = React.useRef<number>(0);
+  const prevIsMyTurnRef = React.useRef<boolean>(isMyTurn);
+
+  // Play sound & popup when it becomes this team's turn
+  useEffect(() => {
+    if (!prevIsMyTurnRef.current && isMyTurn) {
+      sound.playTurnAlert();
+      setShowTurnAlert(true);
+      const timer = setTimeout(() => {
+        setShowTurnAlert(false);
+      }, 3500);
+      return () => clearTimeout(timer);
+    }
+    prevIsMyTurnRef.current = isMyTurn;
+  }, [isMyTurn]);
 
   // Play sound when a new targeted attack/effect alert is received
   useEffect(() => {
@@ -215,19 +230,19 @@ export const TeamGameBoard: React.FC<TeamGameBoardProps> = ({
           </div>
         </div>
 
-        {/* Hearts and Turn status */}
+        {/* 1 Life / Health status & Turn status */}
         <div className="flex items-center space-x-4">
-          <div className="flex items-center space-x-1">
-            {[1, 2, 3].map((heartIdx) => (
-              <Heart
-                key={heartIdx}
-                className={`w-4 h-4 ${
-                  heartIdx <= myTeam.hp
-                    ? 'fill-rose-500 text-rose-500'
-                    : 'fill-slate-100 text-slate-300'
-                }`}
-              />
-            ))}
+          <div className="flex items-center space-x-1.5 bg-rose-50 border border-rose-200/80 px-2.5 py-1 rounded-xl shadow-2xs">
+            <Heart
+              className={`w-4 h-4 ${
+                myTeam.hp > 0
+                  ? 'fill-rose-500 text-rose-500 animate-pulse'
+                  : 'fill-slate-200 text-slate-300'
+              }`}
+            />
+            <span className={`text-xs font-bold ${myTeam.hp > 0 ? 'text-rose-700' : 'text-slate-400'}`}>
+              {myTeam.hp > 0 ? '1 Mạng Duy Nhất' : 'Đã Bị Loại'}
+            </span>
           </div>
 
           <div className="pl-3 border-l border-slate-200">
@@ -395,6 +410,55 @@ export const TeamGameBoard: React.FC<TeamGameBoardProps> = ({
         </div>
 
       </div>
+
+      {/* Turn Alert Popup Modal */}
+      {showTurnAlert && (
+        <div 
+          onClick={() => setShowTurnAlert(false)}
+          className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-950/60 backdrop-blur-xs animate-in fade-in duration-200 cursor-pointer"
+        >
+          <div 
+            onClick={(e) => e.stopPropagation()}
+            className="w-full max-w-sm bg-white rounded-3xl p-6 sm:p-7 text-center shadow-2xl border-2 border-sky-400 relative overflow-hidden animate-in zoom-in-95 duration-200"
+          >
+            {/* Top ambient glow */}
+            <div className="absolute top-0 left-1/2 -translate-x-1/2 w-48 h-20 bg-sky-400/20 rounded-full blur-2xl pointer-events-none" />
+
+            <div className="w-16 h-16 rounded-2xl bg-sky-100 text-sky-600 border border-sky-200 flex items-center justify-center mx-auto mb-3.5 shadow-sm animate-bounce">
+              <Zap className="w-8 h-8 fill-sky-500" />
+            </div>
+
+            <span className="text-[11px] font-extrabold uppercase tracking-widest text-sky-700 bg-sky-50 px-3 py-1 rounded-full border border-sky-200">
+              LƯỢT HÀNH ĐỘNG
+            </span>
+
+            <h3 className="text-xl sm:text-2xl font-black text-slate-900 mt-2 mb-1.5">
+              🎯 ĐẾN LƯỢT ĐỘI BẠN!
+            </h3>
+
+            <p className="text-xs text-slate-600 mb-4 leading-relaxed">
+              Đội <strong className="text-slate-900">{myTeam.name}</strong> đang có lượt! Hãy thảo luận để đánh bài kỹ năng hoặc rút 1 lá từ chồng bài chung.
+            </p>
+
+            {isUnderDouble && (
+              <div className="mb-4 p-2.5 rounded-xl bg-amber-50 border border-amber-200 text-xs font-bold text-amber-800 flex items-center justify-center space-x-1.5 animate-pulse">
+                <AlertCircle className="w-4 h-4 text-amber-600 shrink-0" />
+                <span>Chú ý: Bạn đang bị ép rút 2 lượt (Double Action)!</span>
+              </div>
+            )}
+
+            <button
+              onClick={() => {
+                sound.playClick();
+                setShowTurnAlert(false);
+              }}
+              className="w-full py-3 px-4 rounded-xl font-bold text-xs sm:text-sm text-white bg-sky-600 hover:bg-sky-700 shadow-md hover:shadow-lg transition-all cursor-pointer"
+            >
+              VÀO LƯỢT NGAY (Tự đóng sau 3s)
+            </button>
+          </div>
+        </div>
+      )}
 
     </div>
   );
