@@ -95,7 +95,7 @@ io.on('connection', (socket) => {
         name: teamNames[i] || defaultNames[i] || `Đội ${i + 1}`,
         avatar: teamIcons[i] || defaultIcons[i] || 'users',
         color: defaultColors[i] || 'sky',
-        hp: 1,
+        hp: 2,
         hand: [],
         isAlive: true,
         hasShield: false,
@@ -177,8 +177,8 @@ io.on('connection', (socket) => {
     if (callback) callback({ success: true, roomState: room });
   });
 
-  // 2. Team joins a room
-  socket.on('team:join_room', ({ roomCode, teamId }, callback) => {
+  // 2. Team joins a room (Supports custom team name while keeping 5 slots)
+  socket.on('team:join_room', ({ roomCode, teamId, customTeamName }, callback) => {
     const code = (roomCode || '').toUpperCase().trim();
     const room = rooms.get(code);
 
@@ -202,6 +202,11 @@ io.on('connection', (socket) => {
         });
       }
       return;
+    }
+
+    // Apply custom team name if specified by students
+    if (customTeamName && customTeamName.trim()) {
+      targetTeam.name = customTeamName.trim().slice(0, 30);
     }
 
     targetTeam.connected = true;
@@ -252,7 +257,7 @@ io.on('connection', (socket) => {
       deck.hands.forEach((hand, idx) => {
         if (room.teams[idx]) {
           room.teams[idx].hand = hand;
-          room.teams[idx].hp = 1;
+          room.teams[idx].hp = 2;
           room.teams[idx].isAlive = true;
         }
       });

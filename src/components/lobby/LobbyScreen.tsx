@@ -66,7 +66,7 @@ export const LobbyScreen: React.FC<LobbyScreenProps> = ({ onStartGame }) => {
           <span>Mô phỏng tư duy giải quyết vấn đề SSA101 • Dành cho lớp học 20–30 sinh viên</span>
         </div>
         <h1 className="text-3xl sm:text-5xl font-extrabold tracking-tight text-slate-900 mb-3">
-          EXPLODING CRISES
+          EXPLODING CRISIS
         </h1>
         <p className="text-slate-600 text-base sm:text-lg leading-relaxed">
           Trải nghiệm chiến thuật rủi ro dựa trên cơ chế Mèo Nổ. 

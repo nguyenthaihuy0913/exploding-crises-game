@@ -1,4 +1,4 @@
-# 💣 Exploding Crises: Problem Solver Edition
+# 💣 Exploding Crisis: Problem Solver Edition
 
 > **Game thẻ bài giáo dục tương tác thời gian thực** lấy cảm hứng từ cơ chế kinh điển của *Exploding Kittens*, được thiết kế riêng cho môn học **Kỹ năng giải quyết vấn đề & Tư duy phản biện (SSA101)**.
 
@@ -16,7 +16,7 @@
 
 ## 📖 Giới thiệu Dự án
 
-**Exploding Crises** là nền tảng trò chơi phòng học đa thiết bị (Multi-device Classroom Game), giải quyết bài toán biến các giờ học lý thuyết kỹ năng mềm khô khan thành những cuộc đấu trí kịch tính và hào hứng:
+**Exploding Crisis** là nền tảng trò chơi phòng học đa thiết bị (Multi-device Classroom Game), giải quyết bài toán biến các giờ học lý thuyết kỹ năng mềm khô khan thành những cuộc đấu trí kịch tính và hào hứng:
 * **Màn hình Chủ phòng (Host / Máy chiếu):** Được trình chiếu trên màn hình lớn của giảng đường, hiển thị sàn đấu chung, đồng hồ đếm ngược, chồng bài rút, chồng bài bỏ và nhật ký diễn biến trận đấu.
 * **Màn hình Nhóm sinh viên (Clients / Laptop & Mobile):** Sinh viên quét mã QR hoặc nhập mã phòng 4 ký tự để tham gia, mỗi nhóm sở hữu khay bài bí mật riêng, cùng thảo luận và ra quyết định chiến thuật.
 
@@ -32,7 +32,7 @@
 ### 🎴 2. Bộ Bài 50 Lá Gắn Liền Thực Tế SSA101
 | Nhóm Bài | Số Lượng | Ý Nghĩa Kỹ Năng | Tác Dụng Trong Game |
 | :--- | :---: | :--- | :--- |
-| **Exploding Crisis** | 10 lá | Tình huống rủi ro bất ngờ | Bốc trúng sẽ kích hoạt đếm ngược khẩn cấp! Nổ tung và bị loại ngay lập tức (1 mạng duy nhất) nếu không có phương án giải cứu. |
+| **Exploding Crisis** | 10 lá | Tình huống rủi ro bất ngờ | Bốc trúng sẽ kích hoạt đếm ngược khẩn cấp! Nổ tung và bị trừ 1 mạng sống (khởi đầu 2 mạng) nếu không có phương án giải cứu. |
 | **Backup Plan** | 8 lá | Kế hoạch dự phòng (Plan B) | Vô hiệu hóa ngay lập tức lá Crisis và giấu kín lại lá Crisis đó vào chồng bài để bẫy đối thủ. |
 | **Resilience Shield** | 4 lá | Khả năng phục hồi & Kiểm soát | Kích hoạt khiên bảo vệ, miễn nhiễm hoàn toàn đòn cướp bài tiếp theo. |
 | **Analytical Scan** | 4 lá | Analytical Thinking (Phân tích) | Soi trước 3 lá bài đầu tiên của chồng rút để nhận diện rủi ro trước khi ra quyết định. |

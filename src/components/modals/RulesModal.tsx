@@ -51,10 +51,10 @@ export const RulesModal: React.FC<RulesModalProps> = ({ onClose }) => {
               <div className="bg-white/90 p-3 rounded-xl border border-rose-200 text-xs">
                 <div className="font-extrabold text-rose-700 flex items-center space-x-1.5 mb-1">
                   <Heart className="w-4 h-4 fill-rose-500 text-rose-500" />
-                  <span>1 MẠNG SỐNG DUY NHẤT</span>
+                  <span>2 MẠNG SỐNG (2 HP)</span>
                 </div>
                 <p className="text-slate-600 leading-relaxed">
-                  Mỗi đội bắt đầu với <strong>đúng 1 HP</strong>. Rút trúng lá Khủng hoảng (Crisis) mà không gỡ được là <strong>BỊ LOẠI KHỎI VÁN ĐẤU NGAY LẬP TỨC</strong>!
+                  Mỗi đội bắt đầu với <strong>2 HP</strong>. Rút trúng lá Khủng hoảng (Crisis) mà không gỡ được hoặc trả lời sai thử thách 7 bước sẽ bị <strong>trừ 1 HP</strong>. Hết 2 HP sẽ bị loại!
                 </p>
               </div>
 

@@ -7,7 +7,7 @@ import { socket } from '../../utils/socket';
 
 interface ClientJoinRoomProps {
   initialRoomCode?: string;
-  onJoinRoom: (roomCode: string, teamId: string) => void;
+  onJoinRoom: (roomCode: string, teamId: string, customTeamName?: string) => void;
   onBackToMenu: () => void;
   onOpenRules?: () => void;
   roomState: RoomState | null;
@@ -24,6 +24,7 @@ export const ClientJoinRoom: React.FC<ClientJoinRoomProps> = ({
 }) => {
   const [inputCode, setInputCode] = useState<string>(initialRoomCode);
   const [chosenTeamId, setChosenTeamId] = useState<string | null>(null);
+  const [customTeamName, setCustomTeamName] = useState<string>('');
   const [errorMsg, setErrorMsg] = useState<string | null>(null);
   const [liveRoom, setLiveRoom] = useState<RoomState | null>(roomState);
 
@@ -71,6 +72,7 @@ export const ClientJoinRoom: React.FC<ClientJoinRoomProps> = ({
     }
     sound.playClick();
     setChosenTeamId(team.id);
+    setCustomTeamName(team.name);
     setErrorMsg(null);
   };
 
@@ -85,7 +87,7 @@ export const ClientJoinRoom: React.FC<ClientJoinRoomProps> = ({
     }
 
     sound.playSuccess();
-    onJoinRoom(inputCode.trim().toUpperCase(), chosenTeamId);
+    onJoinRoom(inputCode.trim().toUpperCase(), chosenTeamId, customTeamName.trim() || undefined);
   };
 
   // If already joined and waiting for Host to start
@@ -119,7 +121,7 @@ export const ClientJoinRoom: React.FC<ClientJoinRoomProps> = ({
               <ShieldCheck className="w-4 h-4 text-sky-700" />
               <span>Gợi ý chiến thuật SSA101:</span>
             </div>
-            <span>Các bạn trong nhóm hãy chụm lại bàn bạc. Mỗi đội chỉ có <strong>1 Mạng duy nhất</strong>! Hãy tranh thủ đọc nhanh luật chơi và tác dụng các thẻ bài bên dưới.</span>
+            <span>Các bạn trong nhóm hãy chụm lại bàn bạc. Mỗi đội có <strong>2 Mạng sống (2 HP)</strong>! Hãy tranh thủ đọc nhanh luật chơi và tác dụng các thẻ bài bên dưới.</span>
           </div>
 
           {/* Action button to view rules while waiting */}
@@ -283,6 +285,27 @@ export const ClientJoinRoom: React.FC<ClientJoinRoomProps> = ({
                   </button>
                 );
               })}
+            </div>
+          )}
+
+          {/* Custom Team Name Input */}
+          {chosenTeamId && (
+            <div className="mt-4 p-3.5 bg-emerald-50/70 border border-emerald-200 rounded-xl animate-in fade-in">
+              <label className="block text-xs font-bold text-emerald-950 mb-1.5 flex items-center justify-between">
+                <span>✏️ Tên nhóm của bạn (hoặc giữ tên mặc định):</span>
+                <span className="text-[10px] text-emerald-700 font-mono">Tối đa 30 ký tự</span>
+              </label>
+              <input
+                type="text"
+                maxLength={30}
+                value={customTeamName}
+                onChange={(e) => setCustomTeamName(e.target.value)}
+                placeholder="VD: Nhóm 1 - Sát Thủ Deadline, Đội Alpha..."
+                className="w-full text-sm font-bold bg-white border border-emerald-300 rounded-lg px-3 py-2 text-slate-900 focus:outline-none focus:ring-2 focus:ring-emerald-400"
+              />
+              <p className="text-[11px] text-emerald-700 mt-1">
+                Tên này sẽ hiển thị trực tiếp trên máy chiếu và bảng điều khiển của cả lớp!
+              </p>
             </div>
           )}
         </div>

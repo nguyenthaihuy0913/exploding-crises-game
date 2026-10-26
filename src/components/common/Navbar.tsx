@@ -29,7 +29,7 @@ export const Navbar: React.FC<NavbarProps> = ({
           <div>
             <div className="flex items-center space-x-2">
               <span className="font-extrabold tracking-tight text-lg text-slate-900">
-                EXPLODING CRISES
+                EXPLODING CRISIS
               </span>
               <span className="text-[11px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-md bg-rose-50 text-rose-700 border border-rose-200">
                 SSA101 Edition

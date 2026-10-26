@@ -233,15 +233,20 @@ export const TeamGameBoard: React.FC<TeamGameBoardProps> = ({
         {/* 1 Life / Health status & Turn status */}
         <div className="flex items-center space-x-4">
           <div className="flex items-center space-x-1.5 bg-rose-50 border border-rose-200/80 px-2.5 py-1 rounded-xl shadow-2xs">
-            <Heart
-              className={`w-4 h-4 ${
-                myTeam.hp > 0
-                  ? 'fill-rose-500 text-rose-500 animate-pulse'
-                  : 'fill-slate-200 text-slate-300'
-              }`}
-            />
+            <div className="flex items-center space-x-0.5">
+              {[1, 2].map((i) => (
+                <Heart
+                  key={i}
+                  className={`w-4 h-4 ${
+                    myTeam.hp >= i
+                      ? 'fill-rose-500 text-rose-500 animate-pulse'
+                      : 'fill-slate-200 text-slate-300'
+                  }`}
+                />
+              ))}
+            </div>
             <span className={`text-xs font-bold ${myTeam.hp > 0 ? 'text-rose-700' : 'text-slate-400'}`}>
-              {myTeam.hp > 0 ? '1 Mạng Duy Nhất' : 'Đã Bị Loại'}
+              {myTeam.hp > 0 ? `${myTeam.hp} Mạng Sống` : 'Đã Bị Loại'}
             </span>
           </div>
 

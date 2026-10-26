@@ -204,8 +204,8 @@ export function App() {
   // ==========================================
   // TEAM LAPTOP (JOIN MODE) HANDLERS
   // ==========================================
-  const handleClientJoin = (code: string, teamId: string) => {
-    socket.emit('team:join_room', { roomCode: code, teamId }, (response: { success: boolean; message?: string; team?: Team; roomState?: RoomState }) => {
+  const handleClientJoin = (code: string, teamId: string, customTeamName?: string) => {
+    socket.emit('team:join_room', { roomCode: code, teamId, customTeamName }, (response: { success: boolean; message?: string; team?: Team; roomState?: RoomState }) => {
       if (response.success && response.roomState) {
         setRoomState(response.roomState);
         setMyTeamId(teamId);
@@ -307,9 +307,9 @@ export function App() {
     });
   };
 
-  // Host helpers for defusing or QnA on behalf of students
+  // Host helpers for defusing or QnA on behalf of students (only when playing solo/offline without connected clients)
   const handleHostDefuse = (insertPosition: 'top' | 'middle' | 'bottom' | 'random') => {
-    if (!roomState || !currentTeamOnBoard) return;
+    if (!roomState || !currentTeamOnBoard || currentTeamOnBoard.connected) return;
     socket.emit('game:defuse_crisis', {
       roomCode: roomState.code,
       teamId: currentTeamOnBoard.id,
@@ -318,7 +318,7 @@ export function App() {
   };
 
   const handleHostFailedDefuse = () => {
-    if (!roomState) return;
+    if (!roomState || currentTeamOnBoard?.connected) return;
     const nextQna = getNextUnusedQna(roomState.usedQuestionIds || []);
     socket.emit('game:trigger_qna', {
       roomCode: roomState.code,
@@ -327,7 +327,7 @@ export function App() {
   };
 
   const handleHostQnaSubmit = (isCorrect: boolean) => {
-    if (!roomState || !currentTeamOnBoard) return;
+    if (!roomState || !currentTeamOnBoard || currentTeamOnBoard.connected) return;
     socket.emit('game:qna_submit', {
       roomCode: roomState.code,
       teamId: currentTeamOnBoard.id,
@@ -347,7 +347,7 @@ export function App() {
       name,
       avatar: TEAM_AVATARS[idx],
       color: TEAM_COLORS[idx],
-      hp: 1,
+      hp: 2,
       hand: hands[idx] || [],
       isAlive: true,
       hasShield: false,
@@ -752,6 +752,7 @@ export function App() {
             currentTeam={currentTeamOnBoard}
             onDefuse={handleHostDefuse}
             onFailedDefuse={handleHostFailedDefuse}
+            isHostView={true}
           />
         ) : isMyTurnOnClient ? (
           <CrisisModal
@@ -759,6 +760,7 @@ export function App() {
             currentTeam={currentTeamOnBoard}
             onDefuse={handleClientDefuse}
             onFailedDefuse={handleClientFailedDefuse}
+            isHostView={false}
           />
         ) : (
           /* Spectator Waiting Alert for other teams */
@@ -791,12 +793,14 @@ export function App() {
             currentTeam={currentTeamOnBoard}
             qnaItem={roomState.activeQna}
             onComplete={handleHostQnaSubmit}
+            readOnly={Boolean(currentTeamOnBoard.connected)}
           />
         ) : isMyTurnOnClient ? (
           <QnaModal
             currentTeam={currentTeamOnBoard}
             qnaItem={roomState.activeQna}
             onComplete={handleClientQnaSubmit}
+            readOnly={false}
           />
         ) : (
           /* Spectator Waiting Alert for other teams */

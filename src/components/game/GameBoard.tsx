@@ -131,15 +131,20 @@ export const GameBoard: React.FC<GameBoardProps> = ({
                   <TeamIcon name={team.avatar} className="w-4 h-4" />
                 </div>
                 <div className="flex items-center space-x-1">
-                  <Heart
-                    className={`w-3.5 h-3.5 ${
-                      team.hp > 0
-                        ? 'fill-rose-500 text-rose-500 animate-pulse'
-                        : 'fill-slate-100 text-slate-300'
-                    }`}
-                  />
+                  <div className="flex items-center space-x-0.5">
+                    {[1, 2].map((i) => (
+                      <Heart
+                        key={i}
+                        className={`w-3.5 h-3.5 ${
+                          team.hp >= i
+                            ? 'fill-rose-500 text-rose-500'
+                            : 'fill-slate-100 text-slate-300'
+                        }`}
+                      />
+                    ))}
+                  </div>
                   <span className={`text-[11px] font-bold ${team.hp > 0 ? 'text-rose-600' : 'text-slate-400'}`}>
-                    {team.hp > 0 ? '1 Mạng' : 'Đã loại'}
+                    {team.hp > 0 ? `${team.hp} Mạng` : 'Đã loại'}
                   </span>
                 </div>
               </div>

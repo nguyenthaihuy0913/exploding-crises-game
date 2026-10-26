@@ -34,7 +34,7 @@ export const MainMenu: React.FC<MainMenuProps> = ({
             <ShieldAlert className="w-6 h-6" />
           </div>
           <h1 className="text-3xl sm:text-5xl font-extrabold tracking-tight text-slate-900">
-            EXPLODING CRISES
+            EXPLODING CRISIS
           </h1>
         </div>
 
@@ -171,9 +171,9 @@ export const MainMenu: React.FC<MainMenuProps> = ({
           </div>
 
           <div className="p-3 rounded-xl bg-rose-50/70 border border-rose-200/80">
-            <strong className="text-rose-900 block font-bold mb-1">❤️ 1 Mạng Duy Nhất (1 HP)</strong>
+            <strong className="text-rose-900 block font-bold mb-1">❤️❤️ 2 Mạng Sống (2 HP)</strong>
             <p className="text-slate-600 leading-relaxed">
-              Mỗi đội chỉ có 1 mạng sống. Rút trúng Crisis mà không có <strong>Backup Plan</strong> hoặc trả lời sai thử thách 7 bước là <strong>BỊ LOẠI NGAY</strong>!
+              Mỗi đội khởi đầu với 2 mạng sống. Rút trúng Crisis mà không có <strong>Backup Plan</strong> hoặc trả lời sai thử thách 7 bước sẽ bị <strong>trừ 1 mạng</strong>. Hết 2 mạng sẽ bị loại!
             </p>
           </div>
 
